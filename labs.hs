@@ -60,5 +60,33 @@ nub xs = nubAux xs []
                              else h:(nubAux t (h:uniqs))
 -- Or simpler:
 
-nub l = foldr (condJoin) [] l
+nub' l = foldr (condJoin) [] l
   where condJoin h t = if not (h `elem` t) then h:t else t
+
+--- Task 2.6
+
+triads n = [(x, y, z) | x <- [1..n], y <- [1..n], z <- [1..n], x^2 + y^2 == z^2]
+triads' n = [(x, y, z) | x <- [1..n], y <- [x..n], z <- [1..n], x^2 + y^2 == z^2]
+triads'' n = [(x, y, z) | x <- [1..n], y <- [x..n], z <- [y..n], x^2 + y^2 == z^2]
+
+--- Task 2.7
+
+fibNaive n
+  | n < 2 = n
+  | otherwise = fibNaive (n-1) + fibNaive (n-2)
+
+fibSmart n
+  | n < 2 = n
+  | otherwise = fst (fibPair n)
+    where fibPair n
+            | n == 0 = (0, 0)
+            | n == 1 = (1, 0)
+            | otherwise = let (a, b) = fibPair (n-1) in (a+b, a)
+
+factNaive n = if n > 1 then n * factNaive (n-1) else 1
+
+factSmart n =
+  let factAux n acc
+        | n < 2 = acc
+        | otherwise = factAux (n-1) (n*acc)
+  in factAux n 1
