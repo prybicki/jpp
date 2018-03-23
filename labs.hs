@@ -90,3 +90,20 @@ factSmart n =
         | n < 2 = acc
         | otherwise = factAux (n-1) (n*acc)
   in factAux n 1
+
+primes n = primesAux [2..n]
+  where primesAux [] = []
+        primesAux (h:t) = h:(primesAux $ filter (\x -> x `mod` h /= 0) t)
+
+--- Task 2.8
+
+indexOf c xs = indexOfAux c xs 0
+  where indexOfAux c [] n = Nothing
+        indexOfAux c (h:t) n = if h == c then Just n else indexOfAux c t (n+1)
+
+positions c xs = positionsAux c xs 0 []
+  where positionsAux c [] n ps = reverse(ps)
+        positionsAux c (h:t) n ps =
+          if h == c
+          then positionsAux c t (n+1) (n:ps)
+          else positionsAux c t (n+1) ps
