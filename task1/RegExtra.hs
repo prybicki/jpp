@@ -23,7 +23,18 @@ instance Mon (Reg c) where
   x <> y = x :| y
 
 simpl :: Reg c -> Reg c
-simpl x = x
+simpl (l :| Empty) = simpl l
+simpl (Empty :| r) = simpl r
+simpl (x :| Eps) = if nullable x then simpl x else (simpl x :| simpl Eps)
+simpl (Eps :| x) = simpl (x :| Eps)
+simpl (l :| r) = (simpl l :| simpl r)
+simpl (l :> Empty) = simpl l
+simpl (Empty :> r) = simpl r
+simpl (l :> Eps) = simpl l
+simpl (Eps :> r) = simpl r
+simpl (l :> r) = (simpl l :> simpl r)
+simpl (Many r) = Many (simpl r)
+simpl r = r   -- Lit, Eps, Empty
 
 nullable :: Reg c -> Bool
 nullable Eps = True
