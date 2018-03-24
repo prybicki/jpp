@@ -10,7 +10,7 @@ class Equiv a where
   (===) :: a -> a -> Bool
 
 instance (Eq c) => Equiv (Reg c) where
-  l === r = simpl l == simpl r
+  l === r = (simpl l) == (simpl r)
   -- l1 :| l2 === r1 :| r2 = let (l1' :| l2') = simpl (l1 :| l2)
   --                             (r1' :| r2') = simpl (r1 :| r2)
   --                         in  (l1' === r1' && l2' === r2')
@@ -30,11 +30,15 @@ simpl :: Reg c -> Reg c
 -- simpl (Empty :| x) = x
 -- simpl (Eps :> x) = x
 -- simpl (Many x) = Many (simpl x)
-simpl (l :> r) = simpl $ foldl (:>) Eps (linerizeConcat (l :> r)) where
+simpl (l :> r) = foldl (concat') Eps (linerizeConcat (l :> r)) where
+    concat' Eps x = x
+    concat' acc x = acc :> x
     linerizeConcat (l :> r) = (linerizeConcat (simpl l)) ++ (linerizeConcat (simpl r))
     linerizeConcat Eps = []
     linerizeConcat x = [x]
-simpl (l :| r) = simpl $ foldl (:|) Empty (linearizeSum (l :| r)) where
+simpl (l :| r) = foldl (sum') Empty (linearizeSum (l :| r)) where
+  sum' Empty x = x
+  sum' acc x = acc :| x
   linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
   linearizeSum Empty = []
   linearizeSum x = [x]
