@@ -11,53 +11,27 @@ class Equiv a where
 
 instance (Eq c) => Equiv (Reg c) where
   l === r = (simpl l) == (simpl r)
-  -- l1 :| l2 === r1 :| r2 = let (l1' :| l2') = simpl (l1 :| l2)
-  --                             (r1' :| r2') = simpl (r1 :| r2)
-  --                         in  (l1' === r1' && l2' === r2')
-  --                         ||  (l1' === r2' && l2' === r1')
-  -- l1 :| l2 === r = simpl (l1 :| l2) == simpl r
-  -- l === r1 :| r2 = r1 :| r2 === l
-  -- l1 :> l2 === r1 :> r2 = let (l1' :| l2') = simpl (l1 :| l2)
-  --                             (r1' :| r2') = simpl (r1 :| r2)
-  --                         in  l1' === r1' && l2' === r2'
 
 instance Mon (Reg c) where
   m1 = Eps
   x <> y = x :> y
 
-simpl :: Reg c -> Reg c
--- simpl (Empty :> _) = Empty
--- simpl (Empty :| x) = x
--- simpl (Eps :> x) = x
--- simpl (Many x) = Many (simpl x)
+simpl :: (Eq c) => Reg c -> Reg c
 simpl (l :> r) = foldl (concat') Eps (linerizeConcat (l :> r)) where
     concat' Eps x = x
     concat' acc x = acc :> x
     linerizeConcat (l :> r) = (linerizeConcat (simpl l)) ++ (linerizeConcat (simpl r))
     linerizeConcat Eps = []
     linerizeConcat x = [x]
+-- TBH  simplifying sum seems to be unnecessary.
 simpl (l :| r) = foldl (sum') Empty (linearizeSum (l :| r)) where
   sum' Empty x = x
   sum' acc x = acc :| x
   linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
   linearizeSum Empty = []
   linearizeSum x = [x]
-simpl x = x
-
--- simpl (l :| Empty) = Empty
--- simpl (Empty :| r) = Empty
--- simpl (x :| Eps) = if nullable x then simpl x else (simpl x :| simpl Eps)
--- simpl (Eps :| x) = simpl (x :| Eps)
--- simpl (l :| r) = (simpl l :| simpl r)
---
--- simpl (l :> Empty) = simpl l
--- simpl (Empty :> r) = simpl r
--- simpl (l :> Eps) = simpl l
--- simpl (Eps :> r) = simpl r
--- simpl (l :> r) = (simpl l :> simpl r)
-
 simpl (Many r) = Many (simpl r)
-simpl r = r   -- Lit, Eps, Empty
+simpl r = r -- Lit, Eps, Empty
 
 nullable :: Reg c -> Bool
 nullable Eps = True
@@ -72,14 +46,26 @@ empty (l :| r) = (empty l) && (empty r)
 empty (l :> r) = (empty l) && (empty r)
 empty _ = False
 
-der :: c -> Reg c -> Reg c
-der c r = r
+der :: (Eq c) => c -> Reg c -> Reg c
+nu r = if nullable r then Eps else Empty
+der c Empty = Empty
+der c Eps = Empty
+der c (Lit a) = if c == a then Eps else Empty
+der c (Many r) = (der c r) :> (Many r)
+-- der c (l :> r) = ((der c l) :> r) :| ((nu l) :> (der c r))
+der a (r1 :> r2)
+  | nullable r1 = ((der a s1) :> s2) :| (der a s2)
+  | otherwise = (der a s1) :> s2
+  where s1 = r1
+        s2 = r2
+der c (l :| r) = (der c l) :| (der c r)
 
 ders :: Eq c => [c] -> Reg c -> Reg c
-ders c r = r
+ders [] r = r
+ders (c:s) r = der c (ders s r)
 
 accepts :: Eq c => Reg c -> [c] -> Bool
-accepts r w = False
+accepts r w = nullable (ders w r)
 
 mayStart :: Eq c => c -> Reg c -> Bool
 mayStart c r = False
