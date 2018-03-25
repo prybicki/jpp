@@ -74,19 +74,20 @@ accepts r w = nullable $ ders w r
 mayStart :: Eq c => c -> Reg c -> Bool
 mayStart c r = not $ empty $ ders [c] r
 
+-- ((Many (Lit 0 :> Lit 1 )) :| (Many (Lit 1  :| (Lit 0 :> Lit 1 ))))
 match :: Eq c => Reg c -> [c] -> Maybe [c]
 match r [] = if nullable r then Just [] else Nothing
-match r (c:s) = if empty r
-                then Nothing
-                else if match (der c r) s == Nothing
-                     then if nullable r then Just [] else Nothing
-                     else fmap (c:) match (der c r) s
+match r (h:t)
+  | empty r = Nothing
+  | otherwise = aux $ match (der h r) t where
+      aux Nothing = if nullable r then Just [] else Nothing
+      aux (Just t') = Just (h:t')
 
 search :: Eq c => Reg c -> [c] -> Maybe [c]
 search r [] = if nullable r then Just [] else Nothing
-search r (h:t) = case match r (h:t) of
-    Nothing -> search r t
-    Just cs -> Just cs
+search r (c:s) = aux $ match r (c:s) where
+  aux Nothing = search r s
+  aux (Just cs) = Just cs
 
 findall :: Eq c => Reg c -> [c] -> [[c]]
 findall r w = []
