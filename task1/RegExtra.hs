@@ -2,6 +2,7 @@ module RegExtra where
 import Mon
 import Reg
 import Data.List
+import Debug.Trace
 
 data AB = A | B deriving(Eq,Ord,Show)
 
@@ -19,17 +20,22 @@ instance Mon (Reg c) where
 simpl :: (Eq c) => Reg c -> Reg c
 simpl (l :> r) = foldl (concat') Eps (linerizeConcat (l :> r)) where
     concat' Eps x = x
+    concat' acc Empty = Empty
     concat' acc x = acc :> x
     linerizeConcat (l :> r) = (linerizeConcat (simpl l)) ++ (linerizeConcat (simpl r))
     linerizeConcat Eps = []
     linerizeConcat x = [x]
 -- TBH  simplifying sum seems to be unnecessary.
-simpl (l :| r) = foldl (sum') Empty (linearizeSum (l :| r)) where
-  sum' Empty x = x
-  sum' acc x = acc :| x
-  linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
-  linearizeSum Empty = []
-  linearizeSum x = [x]
+-- simpl (Empty :| r) = simpl r
+-- simpl (r :| Empty) = simpl r
+-- simpl (l :| r) = foldl' (sum') Empty (linearizeSum (l :| r)) where
+--   sum' Empty x = x
+--   sum' acc x = acc :| x
+--   linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
+--   linearizeSum Empty = []
+--   linearizeSum x = [x]
+simpl (Many Eps) = Eps
+simpl (Many Empty) = Eps
 simpl (Many r) = Many (simpl r)
 simpl r = r -- Lit, Eps, Empty
 
@@ -43,38 +49,44 @@ nullable _ = False
 empty :: Reg c -> Bool
 empty Empty = True
 empty (l :| r) = (empty l) && (empty r)
-empty (l :> r) = (empty l) && (empty r)
+empty (l :> r) = (empty l) || (empty r)
 empty _ = False
 
 der :: (Eq c) => c -> Reg c -> Reg c
-nu r = if nullable r then Eps else Empty
 der c Empty = Empty
 der c Eps = Empty
 der c (Lit a) = if c == a then Eps else Empty
 der c (Many r) = (der c r) :> (Many r)
--- der c (l :> r) = ((der c l) :> r) :| ((nu l) :> (der c r))
-der a (r1 :> r2)
-  | nullable r1 = ((der a s1) :> s2) :| (der a s2)
-  | otherwise = (der a s1) :> s2
-  where s1 = r1
-        s2 = r2
 der c (l :| r) = (der c l) :| (der c r)
+der c (l :> r) = if nullable l
+                 then ((der c l) :> r) :| (der c r)
+                 else (der c l) :> r
 
 ders :: Eq c => [c] -> Reg c -> Reg c
-ders [] r = r
-ders (c:s) r = der c (ders s r)
+ders str r = simpl $ foldl (flip der) r str
+  -- simpl (dersAux (reverse str) r) where
+  -- dersAux [] r = r
+  -- dersAux (a:u) r = (der a (dersAux u r))
 
 accepts :: Eq c => Reg c -> [c] -> Bool
-accepts r w = nullable (ders w r)
+accepts r w = nullable $ ders w r
 
 mayStart :: Eq c => c -> Reg c -> Bool
-mayStart c r = False
+mayStart c r = not $ empty $ ders [c] r
 
 match :: Eq c => Reg c -> [c] -> Maybe [c]
-match r w = Nothing
+match r [] = if nullable r then Just [] else Nothing
+match r (c:s) = if empty r
+                then Nothing
+                else if match (der c r) s == Nothing
+                     then if nullable r then Just [] else Nothing
+                     else fmap (c:) match (der c r) s
 
 search :: Eq c => Reg c -> [c] -> Maybe [c]
-search r w = Nothing
+search r [] = if nullable r then Just [] else Nothing
+search r (h:t) = case match r (h:t) of
+    Nothing -> search r t
+    Just cs -> Just cs
 
 findall :: Eq c => Reg c -> [c] -> [[c]]
 findall r w = []
