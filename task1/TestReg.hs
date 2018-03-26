@@ -48,6 +48,34 @@ main = do
        write "mayStart b (ab)*: "
        print $ mayStart B (Many (Lit A :> Lit B))
 
+       let emptyList = tail (A:[])
+
+       write "match Empty []: "
+       print $ match Empty emptyList
+
+       write "match Empty [A]: "
+       print $ match Empty [A]
+
+       write "match Eps []: "
+       print $ match Eps emptyList
+
+       write "match Eps [A]: "
+       print $ match Eps [A]
+
+       let regex = ((Many (Lit A :> Lit B )) :| (Many (Lit A  :| (Lit B :> Lit A))))
+
+       write "match (Lit A) [A]: " -- Just [A]
+       print $ match (Lit A) [A]
+       write "match (Lit A :> Lit B) [AAB]: " -- Just [AB]
+       print $ match (Lit A :> Lit B) [A,A,B]
+       write "match (ab)* + (a + ba)* [AAAAAABABAABABBA]: " -- Just [AAAAAABABAABA]
+       print $ match regex [A,A,A,A,A,A,B,A,B,A,A,B,A,B,B,A]
+       write "match (ab)* + (a + ba)* [ABBAB]: " -- Just [AB]
+       print $ match regex [A,B,B,A,B]
+
+
+
+
 leftUnit :: Reg AB -> Bool
 leftUnit x = m1 <> x === x
 

@@ -2,7 +2,6 @@ module RegExtra where
 import Mon
 import Reg
 import Data.List
-import Debug.Trace
 
 data AB = A | B deriving(Eq,Ord,Show)
 
@@ -17,23 +16,23 @@ instance Mon (Reg c) where
   m1 = Eps
   x <> y = x :> y
 
+-- Simpl normalizes :| and :> trees removing nilpotent elements.
 simpl :: (Eq c) => Reg c -> Reg c
 simpl (l :> r) = foldl (concat') Eps (linerizeConcat (l :> r)) where
-    concat' Eps x = x
-    concat' acc Empty = Empty
-    concat' acc x = acc :> x
-    linerizeConcat (l :> r) = (linerizeConcat (simpl l)) ++ (linerizeConcat (simpl r))
-    linerizeConcat Eps = []
-    linerizeConcat x = [x]
--- TBH  simplifying sum seems to be unnecessary.
--- simpl (Empty :| r) = simpl r
--- simpl (r :| Empty) = simpl r
--- simpl (l :| r) = foldl' (sum') Empty (linearizeSum (l :| r)) where
---   sum' Empty x = x
---   sum' acc x = acc :| x
---   linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
---   linearizeSum Empty = []
---   linearizeSum x = [x]
+  concat' Eps x = x
+  concat' acc Empty = Empty
+  concat' acc x = acc :> x
+  linerizeConcat (l :> r) = (linerizeConcat (simpl l)) ++ (linerizeConcat (simpl r))
+  linerizeConcat Eps = []
+  linerizeConcat x = [x]
+-- TBH  normalizing sum tree seems to be unnecessary.
+simpl (l :| r) = foldl (sum') Empty (linearizeSum (l :| r)) where
+  sum' acc Empty = Empty
+  sum' Empty x = x
+  sum' acc x = acc :| x
+  linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
+  linearizeSum Empty = []
+  linearizeSum x = [x]
 simpl (Many Eps) = Eps
 simpl (Many Empty) = Eps
 simpl (Many r) = Many (simpl r)
@@ -63,10 +62,7 @@ der c (l :> r) = if nullable l
                  else (der c l) :> r
 
 ders :: Eq c => [c] -> Reg c -> Reg c
-ders str r = simpl $ foldl (flip der) r str
-  -- simpl (dersAux (reverse str) r) where
-  -- dersAux [] r = r
-  -- dersAux (a:u) r = (der a (dersAux u r))
+ders str r = foldl (flip der) r str
 
 accepts :: Eq c => Reg c -> [c] -> Bool
 accepts r w = nullable $ ders w r
@@ -74,23 +70,25 @@ accepts r w = nullable $ ders w r
 mayStart :: Eq c => c -> Reg c -> Bool
 mayStart c r = not $ empty $ ders [c] r
 
--- ((Many (Lit 0 :> Lit 1 )) :| (Many (Lit 1  :| (Lit 0 :> Lit 1 ))))
 match :: Eq c => Reg c -> [c] -> Maybe [c]
 match r [] = if nullable r then Just [] else Nothing
-match r (h:t)
+match r (c:s)
   | empty r = Nothing
-  | otherwise = aux $ match (der h r) t where
-      aux Nothing = if nullable r then Just [] else Nothing
-      aux (Just t') = Just (h:t')
+  | otherwise = fromNextOutput $ match (der c r) s where
+      fromNextOutput (Just s2) = Just (c:s2)
+      fromNextOutput Nothing = if nullable r then Just [] else Nothing
 
 search :: Eq c => Reg c -> [c] -> Maybe [c]
 search r [] = if nullable r then Just [] else Nothing
-search r (c:s) = aux $ match r (c:s) where
-  aux Nothing = search r s
-  aux (Just cs) = Just cs
+search r (c:s) = fromNextOutput $ match r (c:s) where
+  fromNextOutput (Just cs) = Just cs
+  fromNextOutput Nothing = search r s
 
 findall :: Eq c => Reg c -> [c] -> [[c]]
-findall r w = []
+findall r w = filter (not . null) $ foldr (@@) [] matches where
+  (Just h) @@ t = h:t
+  Nothing @@ t = t
+  matches = map (match r) (tails w)
 
 char :: Char -> Reg Char
 char = Lit
