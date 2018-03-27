@@ -16,23 +16,21 @@ instance Mon (Reg c) where
   m1 = Eps
   x <> y = x :> y
 
--- Simpl normalizes :| and :> trees removing nilpotent elements.
 simpl :: (Eq c) => Reg c -> Reg c
-simpl (l :> r) = foldl (concat') Eps (linerizeConcat (l :> r)) where
+simpl (l :> r) = foldr (concat') Eps $ linearizeConcat (l :> r) [] where
   concat' Eps x = x
+  concat' acc Eps = acc
   concat' acc Empty = Empty
+  concat' Empty x = Empty
   concat' acc x = acc :> x
-  linerizeConcat (l :> r) = (linerizeConcat (simpl l)) ++ (linerizeConcat (simpl r))
-  linerizeConcat Eps = []
-  linerizeConcat x = [x]
--- TBH  normalizing sum tree seems to be unnecessary.
-simpl (l :| r) = foldl (sum') Empty (linearizeSum (l :| r)) where
-  sum' acc Empty = Empty
+  linearizeConcat (l :> r) acc = linearizeConcat l (linearizeConcat r acc)
+  linearizeConcat x acc = (simpl x):acc
+simpl (l :| r) = foldl (sum') Empty $ nub $ linearizeSum (l :| r) [] where
+  sum' acc Empty = acc
   sum' Empty x = x
   sum' acc x = acc :| x
-  linearizeSum (l :| r) = (linearizeSum (simpl l)) ++ (linearizeSum (simpl r))
-  linearizeSum Empty = []
-  linearizeSum x = [x]
+  linearizeSum (l :| r) acc = linearizeSum l (linearizeSum r acc)
+  linearizeSum x acc = (simpl x):acc
 simpl (Many Eps) = Eps
 simpl (Many Empty) = Eps
 simpl (Many r) = Many (simpl r)
@@ -43,28 +41,29 @@ nullable Eps = True
 nullable (Many _) = True
 nullable (l :| r) = (nullable l) || (nullable r)
 nullable (l :> r) = (nullable l) && (nullable r)
-nullable _ = False
+nullable _ = False -- Lit, Empty
 
 empty :: Reg c -> Bool
 empty Empty = True
 empty (l :| r) = (empty l) && (empty r)
 empty (l :> r) = (empty l) || (empty r)
-empty _ = False
+empty _ = False --  Eps, Lit, Many
 
 der :: (Eq c) => c -> Reg c -> Reg c
-der c Empty = Empty
-der c Eps = Empty
-der c (Lit a) = if c == a then Eps else Empty
-der c (Many r) = (der c r) :> (Many r)
-der c (l :| r) = (der c l) :| (der c r)
-der c (l :> r) = if nullable l
-                 then ((der c l) :> r) :| (der c r)
-                 else (der c l) :> r
+der c r = simpl $ derAux c (simpl r) where
+  derAux c Empty = Empty
+  derAux c Eps = Empty
+  derAux c (Lit a) = if c == a then Eps else Empty
+  derAux c (Many r) = (derAux c r) :> (Many r)
+  derAux c (l :| r) = (derAux c l) :| (derAux c r)
+  derAux c (l :> r) = if nullable l
+                   then ((derAux c l) :> r) :| (derAux c r)
+                   else (derAux c l) :> r
 
 ders :: Eq c => [c] -> Reg c -> Reg c
-ders str r = foldl (flip der) r str
+ders str r = foldl (flip der) (simpl r) str
 
-accepts :: Eq c => Reg c -> [c] -> Bool
+accepts :: Eq c=> Reg c -> [c] -> Bool
 accepts r w = nullable $ ders w r
 
 mayStart :: Eq c => c -> Reg c -> Bool
