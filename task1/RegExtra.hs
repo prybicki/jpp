@@ -16,6 +16,9 @@ instance Mon (Reg c) where
   m1 = Eps
   x <> y = x :> y
 
+-- my simpl normalizes tree by linearizing it and then foldr-ing it
+-- with concatenation that catches some nilpotent elements and ignores them
+-- in case of sum before folding the list is nub-bed to remove things ~ (a :| a)
 simpl :: (Eq c) => Reg c -> Reg c
 simpl (l :> r) = foldr (concat') Eps $ linearizeConcat (l :> r) [] where
   concat' Eps x = x

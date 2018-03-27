@@ -135,12 +135,12 @@ writeln = putStrLn
 instance Arbitrary AB where
   arbitrary = oneof [return A, return B]
 
-shrinkReg :: Eq c => Reg c -> [Reg c]
+shrinkReg :: (Eq c, Show c) => Reg c -> [Reg c]
 shrinkReg r = if r == s then [] else [s] where s = simpl r
 
 --liftR f x = liftM2 f x x
 
-instance (Eq c,Arbitrary c) => Arbitrary (Reg c) where
+instance (Eq c,Arbitrary c, Show c) => Arbitrary (Reg c) where
   arbitrary = sized arb where
     arb 0 = oneof [return Eps, return Empty]
     arb 1 = Lit <$> arbitrary
