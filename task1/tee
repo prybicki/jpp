@@ -1,0 +1,30 @@
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
+
+real	0m1.054s
+user	0m1.040s
+sys	0m0.012s

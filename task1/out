@@ -1,0 +1,5046 @@
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 9 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 8 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 0 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 5 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 8 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 7 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 6 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 3 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 2 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.
+=== symmetric
+Expect `Gave up' message
+*** Gave up! Passed only 4 tests.
+=== transitive
+Expect `Gave up' message
+*** Gave up! Passed only 1 tests.
+=== compatible
++++ OK, passed 100 tests.
+cs ∈ L(y) && ε ∈ L(x) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+cs ∈ L(x) && ε ∈ L(y) ==> cs ∈ L(x:>y)
++++ OK, passed 100 tests.
+testRe1 accepts testStr1: True
+testRe2 accepts testStr1: True
+mayStart a (ab)*: True
+mayStart b (ab)*: False
+match Empty []: Nothing
+match Empty [A]: Nothing
+match Eps []: Just []
+match Eps [A]: Just []
+match (Lit A) [A]: Just [A]
+match (Lit A :> Lit B) [AAB]: Nothing
+match (ab)* + (a + ba)* [AAAAAABABAABABBA]: Just [A,A,A,A,A,A,B,A,B,A,A,B,A]
+match (ab)* + (a + ba)* [ABBAB]: Just [A,B]
+testing left unit
++++ OK, passed 100 tests.
+testing right unit
++++ OK, passed 100 tests.
+assoc
++++ OK, passed 100 tests.
+nullable unit
++++ OK, passed 1 tests.
+nullable op
++++ OK, passed 100 tests.
+nullableSimpl
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+=== reflexive
++++ OK, passed 100 tests.

@@ -1,0 +1,43 @@
+I am going to implement imperative C-like language with intention to gather 17 points.
+From optional features for 14 points I have chosen to implement pascal-like for loop and strings handling.
+The grammar is heavily based on given Latte language and is given in separate file including my modifications.
+For the sake of clarity I list below those rules that are new for aforementioned grammar.
+
+For.       Stmt ::= "for" "(" "int" Ident "=" Expr ForT Expr ")" Stmt ; 
+
+ForUp.     ForT ::= "to" ;
+
+ForDown.   ForT ::= "downto" ;
+
+This is pascal-like for loop which may be used in following way:
+
+---
+int main() {
+    for(int i = 99 downto 1) {
+        print(i);
+        print(" bottles of beer on the wall\n");
+        print("Take one down and pass it around, ");
+        print(i-1);
+        print(" bottles of beer on the wall.");
+    }
+    return 0;
+}
+---
+
+or:
+
+---
+int double(int a) {
+    return 2*a;
+}
+
+int main() {
+    int x = 42;
+    for(int i = x to double(x)) {
+        print(i);
+    }
+    return 0;
+}
+---
+
+This is humble declaration as I prefer to extend specification instead of shrink it, because "l”appetit vient en mangeant" ;)
