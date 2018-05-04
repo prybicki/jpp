@@ -1,0 +1,12 @@
+int foo(int a, boolean b)
+{
+  if(b)
+    return a + 5;
+  else
+    return a * 5;
+}
+
+int main()
+{
+  return foo(5, "kotek");
+}

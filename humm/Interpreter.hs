@@ -1,12 +1,14 @@
-module Interpreter where
+module Main where
 
 import AbsLatte
 import LexLatte
 import ParLatte
+import PrintLatte
 import ErrM
 
-import Data.Map as Map hiding(map)
+import Data.Map as Map hiding(map,foldl)
 import Data.Either as Either
+import System.Environment
 
 fnIdent :: TopDef -> Ident
 fnIdent (FnDef _ i _ _) = i
@@ -65,9 +67,11 @@ checkExprType tenv expr = case expr of
     Nothing -> Left ("Function " ++ identToStr ident ++ " undeclared")
     Just (Fun declType argTypes) ->
      let exprTypes = rights (map (checkExprType tenv) argExprs)
-     in if length exprTypes == length argTypes && argTypes == exprTypes
-        then Right declType
-        else Left ("Bad function usage" ++ identToStr ident)
+     in if not $ length exprTypes == length argTypes
+        then Left ("Invalid number arguments in call: " ++ (printTree (EApp ident argExprs)))
+        else if not $ argTypes == exprTypes
+             then Left ("Invalid types in call: " ++ (printTree (EApp ident argExprs))) -- Todo show which arg is bad
+             else Right declType
     _ -> Left ("Identifier " ++ identToStr ident ++ " is not a function")
 -- -- --
 --
@@ -95,9 +99,8 @@ checkStmt tenv expectedRetType stmt = case stmt of
   Empty -> Right tenv
   BStmt (Block stmts) -> case stmts of
                          [] -> Right tenv
-                         (h:t) -> do
-                                    tenv' <- checkStmt tenv expectedRetType h
-                                    checkStmt tenv' expectedRetType (BStmt (Block t))
+                         (h:t) -> do tenv' <- checkStmt tenv expectedRetType h
+                                     checkStmt tenv' expectedRetType (BStmt (Block t))
   Decl declType items -> case items of
                          [] -> Right tenv
                          (h:t) -> do tenv' <- checkItemType tenv declType h
@@ -110,7 +113,7 @@ checkStmt tenv expectedRetType stmt = case stmt of
   Ret expr -> do exprType <- checkExprType tenv expr
                  if exprType == expectedRetType
                  then Right tenv
-                 else Left ("Invalid return type, expected " ++ (show expectedRetType))
+                 else Left ("Invalid return type, expected " ++ (show expectedRetType) ++ " in statement: " ++ printTree (Ret expr))
   VRet -> Right tenv
   Cond expr stmt -> do exprType <- checkExprType tenv expr
                        if Bool == exprType
@@ -129,22 +132,42 @@ checkStmt tenv expectedRetType stmt = case stmt of
   SExp expr -> do checkExprType tenv expr
                   return tenv
 --
+argType :: Arg -> Type
+argType (Arg declType _) = declType
+
+funIdent :: TopDef -> Ident
+funIdent (FnDef _ ident _ _) = ident
+
+funType :: TopDef -> Type
+funType (FnDef declType _ args _) = Fun declType (map argType args)
+
+addArgsToTEnv :: TEnv -> [Arg] -> TEnv
+addArgsToTEnv tenv args = foldl (\env (Arg declType ident) -> Map.insert ident declType env) tenv args
+
+checkTopdefs :: TEnv -> [TopDef] -> Either Error ()
+checkTopdefs tenv topdefs = case topdefs of
+  [] -> return ()
+  ((FnDef declType ident args block):t) ->
+    do
+    let tenv' = addArgsToTEnv tenv args
+    checkStmt tenv' declType (BStmt block)
+    checkTopdefs tenv t
+
 checkProgram :: Program -> Either Error ()
 checkProgram (Program topdefs) =
-  let tenv = (Map.fromList (map funType topdefs))
+  let tenv = (Map.fromList $ zip (map funIdent topdefs) (map funType topdefs))
   in do checkTopdefs tenv topdefs
         return ()
-  where
-    funType :: TopDef -> (Ident, Type)
-    funType (FnDef declType ident args block) = (ident, Fun declType (map argType args))
-      where argType (Arg declType _) = declType
-    checkTopdefs :: TEnv -> [TopDef] -> Either Error ()
-    checkTopdefs tenv topdefs = case topdefs of
-      [] -> return ()
-      ((FnDef declType ident args block):t) ->
-        do
-        checkStmt tenv declType (BStmt block)
-        checkTopdefs tenv t
+
+makeProgram :: String -> Program
+makeProgram s = case pProgram (myLexer s) of
+  Bad s -> error("Uhuhuh bad program")
+  Ok e -> e
+
+main = do
+  args <- getArgs
+  fileStr <- readFile $ args !! 0
+  putStrLn $ show $  checkProgram $ makeProgram fileStr
 
 
 -- Sprawdzenie typów funkcji:
@@ -157,10 +180,7 @@ checkProgram (Program topdefs) =
 -- makePEnv :: [TopDef] -> PEnv
 -- makePEnv topdefs = Map.fromList $ zip (map fnIdent topdefs) (topdefs)
 --
-makeProgram :: String -> Program
-makeProgram s = case pProgram (myLexer s) of
-  Bad s -> error("Uhuhuh bad program")
-  Ok e -> e
+
 
 -- checkTypes :: Program -> VarValue
 -- checkTypes (Program topdefs) =
