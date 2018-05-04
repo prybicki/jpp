@@ -6,7 +6,7 @@ import ParLatte
 import ErrM
 
 import Data.Map as Map hiding(map)
-import Data.IORef as IORef
+import Data.Either as Either
 
 fnIdent :: TopDef -> Ident
 fnIdent (FnDef _ i _ _) = i
@@ -28,32 +28,32 @@ identToStr :: Ident -> String
 identToStr (Ident str) = str
 
 type TEnv = Map Ident Type
+type Error = String
 
-checkUnaryExprType :: TEnv -> Type -> Type -> Expr -> String -> Type
+checkUnaryExprType :: TEnv -> Type -> Type -> Expr -> String -> Either Error Type
 checkUnaryExprType tenv tIn1 tOut e errMsg =
-  let eType = checkExprType tenv e
-  in if eType == tIn1
-     then tOut
-     else error(errMsg ++ (show e))
+  do eType <- checkExprType tenv e
+     if eType == tIn1
+     then Right tOut
+     else Left (errMsg ++ (show e))
 
-checkBinaryExprType :: TEnv -> Type -> Type -> Type -> Expr -> Expr -> String -> Type
+checkBinaryExprType :: TEnv -> Type -> Type -> Type -> Expr -> Expr -> String -> Either Error Type
 checkBinaryExprType tenv tIn1 tIn2 tOut e1 e2 errMsg =
-  let e1Type = checkExprType tenv e1
-      e2Type = checkExprType tenv e2
-  in if (e1Type, e2Type) == (tIn1, tIn2)
-     then tOut
-     else error(errMsg ++ (show e1) ++ " and " ++ (show e2))
+  do e1Type <- checkExprType tenv e1
+     e2Type <- checkExprType tenv e2
+     if (e1Type, e2Type) == (tIn1, tIn2)
+     then Right tOut
+     else Left (errMsg ++ (show e1) ++ " and " ++ (show e2))
 
-checkExprType :: TEnv -> Expr -> Type
+checkExprType :: TEnv -> Expr -> Either Error Type
 checkExprType tenv expr = case expr of
-  (EVar ident) -> let maybeType = (Map.lookup ident tenv)
-                  in case maybeType of
-                     Nothing -> error("Variable " ++ identToStr ident ++ " undeclared")
-                     Just t -> t
-  (ELitInt _) -> Int
-  (ELitTrue) -> Bool
-  (ELitFalse) -> Bool
-  (EString _) -> Str
+  (EVar ident) -> case (Map.lookup ident tenv) of
+                    Nothing -> Left ("Variable " ++ identToStr ident ++ " undeclared")
+                    Just t -> Right t
+  (ELitInt _) -> Right Int
+  (ELitTrue) -> Right Bool
+  (ELitFalse) -> Right Bool
+  (EString _) -> Right Str
   (Neg e) -> checkUnaryExprType tenv Int Int e "Cannot negate (int) expression: "
   (Not e) -> checkUnaryExprType tenv Bool Bool e "Cannot negate (bool) expression: "
   (EMul e1 op e2) -> checkBinaryExprType tenv Int Int Int e1 e2 "Cannot multiply expressions: "
@@ -61,77 +61,90 @@ checkExprType tenv expr = case expr of
   (ERel e1 op e2) -> checkBinaryExprType tenv Int Int Bool e1 e2 "Cannot compare expressions: "
   (EAnd e1 e2) -> checkBinaryExprType tenv Bool Bool Bool e1 e2 "Cannot and expressions: "
   (EOr e1 e2) -> checkBinaryExprType tenv Bool Bool Bool e1 e2 "Cannot or expressions: "
-  (EApp ident argExprs) ->
-    let maybeTopdef = (Map.lookup ident tenv)
-    in case maybeTopdef of
-       Nothing -> error("Function " ++ identToStr ident ++ " undeclared")
-       Just (Fun declType argTypes) ->
-         if (map (checkExprType tenv) argExprs) == argTypes
-         then declType
-         else error("Bad function usage" ++ identToStr ident)
-       _ -> error("Identifier " ++ identToStr ident ++ " is not a function")
-
+  (EApp ident argExprs) -> case (Map.lookup ident tenv) of
+    Nothing -> Left ("Function " ++ identToStr ident ++ " undeclared")
+    Just (Fun declType argTypes) ->
+     let exprTypes = rights (map (checkExprType tenv) argExprs)
+     in if length exprTypes == length argTypes && argTypes == exprTypes
+        then Right declType
+        else Left ("Bad function usage" ++ identToStr ident)
+    _ -> Left ("Identifier " ++ identToStr ident ++ " is not a function")
+-- -- --
 --
-
-checkItemType :: TEnv -> Type -> Item -> TEnv
+checkItemType :: TEnv -> Type -> Item -> Either Error TEnv
 checkItemType tenv declType item = case item of
-  NoInit ident -> (Map.insert ident declType tenv)
-  Init ident expr -> if declType == checkExprType tenv expr
-                     then (Map.insert ident declType tenv)
-                     else error("Invalid initializer type: " ++ (show expr) ++ " expected " ++ (show declType))
-
-checkIdentHasType :: TEnv -> Type -> Ident -> TEnv
+  NoInit ident -> Right (Map.insert ident declType tenv)
+  Init ident expr -> do
+                       exprType <- checkExprType tenv expr
+                       if declType == exprType
+                       then Right (Map.insert ident declType tenv)
+                       else Left ("Invalid initializer type: " ++ (show expr) ++ " expected " ++ (show declType))
+--
+checkIdentHasType :: TEnv -> Type -> Ident -> Either Error ()
 checkIdentHasType tenv expectedType ident =
   case (Map.lookup ident tenv) of
-    Nothing -> error("Undeclared identifier " ++ (identToStr ident))
-    Just foundType -> if foundType == expectedType
-                     then tenv
-                     else error("Invalid type, expected " ++ (show expectedType) ++ " for identifier " ++ (identToStr ident))
+    Nothing -> Left ("Undeclared identifier " ++ (identToStr ident))
+    Just foundType ->if foundType == expectedType
+                     then Right ()
+                     else Left ("Invalid type, expected " ++ (show expectedType) ++ " for identifier " ++ (identToStr ident))
 
--- TODO: Poprawić to że tu się nic nie dzieje ;O
--- Potem dodać either
-checkStmt :: TEnv -> Type -> Stmt -> TEnv
+-- -- TODO: Poprawić to że tu się nic nie dzieje ;O
+-- -- Potem dodać either
+checkStmt :: TEnv -> Type -> Stmt -> Either Error TEnv
 checkStmt tenv expectedRetType stmt = case stmt of
-  Empty -> tenv
+  Empty -> Right tenv
   BStmt (Block stmts) -> case stmts of
-                         [] -> tenv
-                         (h:t) -> let tenv' = checkStmt tenv expectedRetType h
-                                  in checkStmt tenv expectedRetType (BStmt (Block t))
+                         [] -> Right tenv
+                         (h:t) -> do
+                                    tenv' <- checkStmt tenv expectedRetType h
+                                    checkStmt tenv' expectedRetType (BStmt (Block t))
   Decl declType items -> case items of
-                         [] -> tenv
-                         (h:t) -> let tenv' = checkItemType tenv declType h
-                                  in checkStmt tenv' expectedRetType (Decl declType t)
-  Ass ident expr -> checkIdentHasType tenv (checkExprType tenv expr) ident
-  Incr ident -> checkIdentHasType tenv Int ident
-  Decr ident -> checkIdentHasType tenv Int ident
-  Ret expr -> if expectedRetType == checkExprType tenv expr
-              then tenv
-              else error("Invalid return type, expected " ++ (show expectedRetType))
-  VRet -> tenv
-  Cond expr stmt -> if Bool == checkExprType tenv expr
-                    then (checkStmt tenv expectedRetType stmt) `seq` tenv
-                    else error("Expected bool as if condition: " ++ (show expr))
-  CondElse expr stmt1 stmt2 -> if Bool == checkExprType tenv expr
-                               then ((checkStmt tenv expectedRetType stmt1) `seq` (checkStmt tenv expectedRetType stmt2)) `seq` tenv
-                               else error("Expected bool as ifelse condition: " ++ (show expr))
-  While expr stmt -> if Bool == checkExprType tenv expr
-                     then (checkStmt tenv expectedRetType stmt) `seq` tenv
-                     else error("Expected bool as while condition: " ++ (show expr))
-  For _ initExpr _ endExpr stmt -> if (Int == checkExprType tenv initExpr) && (Int == checkExprType tenv endExpr)
-                                   then (checkStmt tenv expectedRetType stmt) `seq` tenv
-                                   else error("Expected integers in for fixme")
-  SExp expr -> (checkExprType tenv expr) `seq` tenv
-
-checkProgram :: Program -> Either String ()
+                         [] -> Right tenv
+                         (h:t) -> do tenv' <- checkItemType tenv declType h
+                                     checkStmt tenv' expectedRetType (Decl declType t)
+  Ass ident expr -> do exprType <- checkExprType tenv expr
+                       checkIdentHasType tenv exprType ident
+                       return tenv
+  Incr ident -> do {checkIdentHasType tenv Int ident; return tenv}
+  Decr ident -> do {checkIdentHasType tenv Int ident; return tenv}
+  Ret expr -> do exprType <- checkExprType tenv expr
+                 if exprType == expectedRetType
+                 then Right tenv
+                 else Left ("Invalid return type, expected " ++ (show expectedRetType))
+  VRet -> Right tenv
+  Cond expr stmt -> do exprType <- checkExprType tenv expr
+                       if Bool == exprType
+                       then checkStmt tenv expectedRetType stmt
+                       else Left ("Expected bool in if/while condition: " ++ (show expr))
+                       return tenv
+  CondElse expr stmt1 stmt2 -> do checkStmt tenv expectedRetType (Cond expr stmt1)
+                                  checkStmt tenv expectedRetType stmt2
+  While expr stmt -> checkStmt tenv expectedRetType (Cond expr stmt)
+  For _ initExpr _ endExpr stmt -> do initType <- checkExprType tenv initExpr
+                                      endType <- checkExprType tenv endExpr
+                                      if initType == Int && endType == Int
+                                      then do checkStmt tenv expectedRetType stmt
+                                              return tenv
+                                      else Left ("Invalid initial or end value of for loop: " ++ (show initExpr) ++ " or " ++ (show endExpr))
+  SExp expr -> do checkExprType tenv expr
+                  return tenv
+--
+checkProgram :: Program -> Either Error ()
 checkProgram (Program topdefs) =
   let tenv = (Map.fromList (map funType topdefs))
-  in Left $ show $ checkTopdefs tenv topdefs where
-    funType (FnDef declType ident args block) = (ident, Fun declType (map argType args)) where
-      argType (Arg declType _) = declType
-    checkTopdefs :: TEnv -> [TopDef] -> TEnv
+  in do checkTopdefs tenv topdefs
+        return ()
+  where
+    funType :: TopDef -> (Ident, Type)
+    funType (FnDef declType ident args block) = (ident, Fun declType (map argType args))
+      where argType (Arg declType _) = declType
+    checkTopdefs :: TEnv -> [TopDef] -> Either Error ()
     checkTopdefs tenv topdefs = case topdefs of
-      [] -> tenv
-      ((FnDef declType ident args block):t) -> (checkStmt tenv declType (BStmt block)) `seq` (checkTopdefs tenv t)
+      [] -> return ()
+      ((FnDef declType ident args block):t) ->
+        do
+        checkStmt tenv declType (BStmt block)
+        checkTopdefs tenv t
 
 
 -- Sprawdzenie typów funkcji:
@@ -140,10 +153,10 @@ checkProgram (Program topdefs) =
 -- W przypadku gdy pewna ścieżka nie kończy się return-em funkcja
 -- zwraca domyślną wartość dla zwracanego typu i generowane jest ostrzeżenie.
 
-
-makePEnv :: [TopDef] -> PEnv
-makePEnv topdefs = Map.fromList $ zip (map fnIdent topdefs) (topdefs)
-
+--
+-- makePEnv :: [TopDef] -> PEnv
+-- makePEnv topdefs = Map.fromList $ zip (map fnIdent topdefs) (topdefs)
+--
 makeProgram :: String -> Program
 makeProgram s = case pProgram (myLexer s) of
   Bad s -> error("Uhuhuh bad program")
