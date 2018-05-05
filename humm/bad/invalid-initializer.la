@@ -1,0 +1,5 @@
+int main()
+{
+  int a = "kotek";
+  return 1;
+}

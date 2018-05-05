@@ -10,10 +10,6 @@ import Data.Map as Map hiding(map,foldl)
 import Data.Either as Either
 import System.Environment
 
-fnIdent :: TopDef -> Ident
-fnIdent (FnDef _ i _ _) = i
-
-
 type VarLocation = Int
 data VarValue
   = VVoid
@@ -26,9 +22,6 @@ type PEnv = Map Ident TopDef
 type VEnv = Map Ident VarLocation
 type State = Map VarLocation VarValue
 
-identToStr :: Ident -> String
-identToStr (Ident str) = str
-
 type TEnv = Map Ident Type
 type Error = String
 
@@ -37,7 +30,7 @@ checkUnaryExprType tenv tIn1 tOut e errMsg =
   do eType <- checkExprType tenv e
      if eType == tIn1
      then Right tOut
-     else Left (errMsg ++ (show e))
+     else Left (errMsg ++ (printTree e))
 
 checkBinaryExprType :: TEnv -> Type -> Type -> Type -> Expr -> Expr -> String -> Either Error Type
 checkBinaryExprType tenv tIn1 tIn2 tOut e1 e2 errMsg =
@@ -45,12 +38,12 @@ checkBinaryExprType tenv tIn1 tIn2 tOut e1 e2 errMsg =
      e2Type <- checkExprType tenv e2
      if (e1Type, e2Type) == (tIn1, tIn2)
      then Right tOut
-     else Left (errMsg ++ (show e1) ++ " and " ++ (show e2))
+     else Left (errMsg ++ (printTree e1) ++ " and " ++ (printTree e2))
 
 checkExprType :: TEnv -> Expr -> Either Error Type
 checkExprType tenv expr = case expr of
   (EVar ident) -> case (Map.lookup ident tenv) of
-                    Nothing -> Left ("Variable " ++ identToStr ident ++ " undeclared")
+                    Nothing -> Left ("Variable " ++ printTree ident ++ " is undeclared")
                     Just t -> Right t
   (ELitInt _) -> Right Int
   (ELitTrue) -> Right Bool
@@ -64,15 +57,15 @@ checkExprType tenv expr = case expr of
   (EAnd e1 e2) -> checkBinaryExprType tenv Bool Bool Bool e1 e2 "Cannot and expressions: "
   (EOr e1 e2) -> checkBinaryExprType tenv Bool Bool Bool e1 e2 "Cannot or expressions: "
   (EApp ident argExprs) -> case (Map.lookup ident tenv) of
-    Nothing -> Left ("Function " ++ identToStr ident ++ " undeclared")
+    Nothing -> Left ("Function " ++ printTree ident ++ " is undeclared")
     Just (Fun declType argTypes) ->
      let exprTypes = rights (map (checkExprType tenv) argExprs)
      in if not $ length exprTypes == length argTypes
-        then Left ("Invalid number arguments in call: " ++ (printTree (EApp ident argExprs)))
+        then Left ("Invalid number of arguments in call: " ++ (printTree (EApp ident argExprs)))
         else if not $ argTypes == exprTypes
-             then Left ("Invalid types in call: " ++ (printTree (EApp ident argExprs))) -- Todo show which arg is bad
+             then Left ("Invalid types in call: " ++ (printTree (EApp ident argExprs))) -- Todo printTree which arg is bad
              else Right declType
-    _ -> Left ("Identifier " ++ identToStr ident ++ " is not a function")
+    _ -> Left ("Cannot call " ++ (printTree ident) ++ ", it is not a function")
 -- -- --
 --
 checkItemType :: TEnv -> Type -> Item -> Either Error TEnv
@@ -82,15 +75,15 @@ checkItemType tenv declType item = case item of
                        exprType <- checkExprType tenv expr
                        if declType == exprType
                        then Right (Map.insert ident declType tenv)
-                       else Left ("Invalid initializer type: " ++ (show expr) ++ " expected " ++ (show declType))
+                       else Left ("Invalid type of initializer expression: " ++ (printTree expr) ++ ", expected " ++ (printTree declType))
 --
 checkIdentHasType :: TEnv -> Type -> Ident -> Either Error ()
 checkIdentHasType tenv expectedType ident =
   case (Map.lookup ident tenv) of
-    Nothing -> Left ("Undeclared identifier " ++ (identToStr ident))
-    Just foundType ->if foundType == expectedType
-                     then Right ()
-                     else Left ("Invalid type, expected " ++ (show expectedType) ++ " for identifier " ++ (identToStr ident))
+    Nothing -> Left ("Undeclared identifier " ++ (printTree ident))
+    Just foundType -> if foundType == expectedType
+                      then Right ()
+                      else Left ("Invalid type, expected expression of type " ++ (printTree foundType) ++ " to assign " ++ (printTree ident))
 
 -- -- TODO: Poprawić to że tu się nic nie dzieje ;O
 -- -- Potem dodać either
@@ -113,12 +106,14 @@ checkStmt tenv expectedRetType stmt = case stmt of
   Ret expr -> do exprType <- checkExprType tenv expr
                  if exprType == expectedRetType
                  then Right tenv
-                 else Left ("Invalid return type, expected " ++ (show expectedRetType) ++ " in statement: " ++ printTree (Ret expr))
-  VRet -> Right tenv
+                 else Left ("Invalid return type, expected " ++ (printTree expectedRetType) ++ ", in statement: " ++ printTree (Ret expr))
+  VRet -> if expectedRetType == Void
+          then Right tenv
+          else Left ("Missing return expression in function returning " ++ (printTree expectedRetType))
   Cond expr stmt -> do exprType <- checkExprType tenv expr
                        if Bool == exprType
                        then checkStmt tenv expectedRetType stmt
-                       else Left ("Expected bool in if/while condition: " ++ (show expr))
+                       else Left ("Expected bool in if/while condition: " ++ (printTree expr))
                        return tenv
   CondElse expr stmt1 stmt2 -> do checkStmt tenv expectedRetType (Cond expr stmt1)
                                   checkStmt tenv expectedRetType stmt2
@@ -128,7 +123,7 @@ checkStmt tenv expectedRetType stmt = case stmt of
                                       if initType == Int && endType == Int
                                       then do checkStmt tenv expectedRetType stmt
                                               return tenv
-                                      else Left ("Invalid initial or end value of for loop: " ++ (show initExpr) ++ " or " ++ (show endExpr))
+                                      else Left ("Invalid initial or end value of for loop: " ++ (printTree initExpr) ++ " or " ++ (printTree endExpr))
   SExp expr -> do checkExprType tenv expr
                   return tenv
 --
@@ -159,15 +154,21 @@ checkProgram (Program topdefs) =
   in do checkTopdefs tenv topdefs
         return ()
 
-makeProgram :: String -> Program
+makeProgram :: String -> Either Error Program
 makeProgram s = case pProgram (myLexer s) of
-  Bad s -> error("Uhuhuh bad program")
-  Ok e -> e
+  Bad s -> Left s
+  Ok e -> Right e
 
 main = do
   args <- getArgs
   fileStr <- readFile $ args !! 0
-  putStrLn $ show $  checkProgram $ makeProgram fileStr
+  let eitherProgram = makeProgram fileStr
+  case eitherProgram of
+    Left err -> putStrLn err
+    Right program ->
+      case (checkProgram program) of
+        Left err -> putStrLn err
+        Right () -> putStrLn "OK"
 
 
 -- Sprawdzenie typów funkcji:
@@ -198,8 +199,8 @@ main = do
 --
 -- latte s =
 --   case pProgram (myLexer s) of
---     Ok e -> show (interpret e)
---     Bad s -> show s
+--     Ok e -> printTree (interpret e)
+--     Bad s -> printTree s
 
 
 --
@@ -215,10 +216,10 @@ main = do
 -- evalExpr penv venv state (EApp ident args) =
 --   let maybeTopdef = (Map.lookup ident penv)
 --   in case maybeTopdef of
---      Nothing -> error("Function " ++ (identToStr ident) ++ " is not in scope")
+--      Nothing -> error("Function " ++ (printTree ident) ++ " is not in scope")
 --      Just (FnDef t i args block) -> let (_, _, maybeReturn) = evalStmt penv venv state (BStmt block)
 --                                    in case maybeReturn of
---                                       Nothing -> error("Function " ++ identToStr ident ++ " did not returned any value")
+--                                       Nothing -> error("Function " ++ printTree ident ++ " did not returned any value")
 --                                       Just VVoid -> error("Ooops - ta funkcja nie powinna byc w tym miejscu")
 --                                       Just value -> value
 --
