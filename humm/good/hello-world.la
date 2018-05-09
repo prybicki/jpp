@@ -1,4 +1,8 @@
+int f(int x) {
+  return x;
+}
+
 int main () {
-  int a = 5;
-  return a;
+  int a = 2;
+  return a * f(42);
 }

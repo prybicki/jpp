@@ -1,3 +1,5 @@
+{-# LANGUAGE LambdaCase #-}
+
 module Main where
 
 import AbsLatte
@@ -33,10 +35,9 @@ data VarValue
   deriving (Show, Eq, Ord)
 
 type FEnv = Map Ident TopDef
-data Env = Env {returnType :: Type, fenv :: FEnv}
 type MemState = Map Ident (IORef VarValue)
-data ExceptionType = Return VarValue | Error String 
-type Execution a = ReaderT Env (StateT MemState (ExceptT ExceptionType IO)) a
+data ExceptionType = ReturnException VarValue | ErrorException String
+type Execution a = ReaderT FEnv (StateT MemState (ExceptT ExceptionType IO)) a
 
 --------------------------------------------------------------------------------
 
@@ -68,36 +69,86 @@ evalExpr expr = case expr of
   EVar ident ->
     do state <- get
        liftIO $ readIORef $ fromJust $ Map.lookup ident state
-  ELitInt n -> do return (VInt n)
+  ELitInt n -> return (VInt n)
+  ELitTrue -> return (VBoolean True)
+  ELitFalse -> return (VBoolean False)
   EApp ident exprs ->
     do memstate <- get
-       env <- ask
-       fenv <- asks fenv
+       fenv <- ask
        let (FnDef declType _ args block) = fromJust $ Map.lookup ident fenv
        values <- mapM evalExpr exprs
        ioValues <- mapM (liftIO . newIORef) values
-       withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block))
+       do {
+          withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
+          return (typeDefaultValue declType)
+       }
+       `catchError` (\case
+         ReturnException varValue -> return varValue
+         err -> throwError err)
+  EString str -> return (VString str)
+  Neg expr ->
+    do (VInt value) <- evalExpr expr
+       return (VInt (-value))
+  Not expr ->
+    do (VBoolean value) <- evalExpr expr
+       return (VBoolean (not value))
+  EMul expr1 op expr2 ->
+    do (VInt value1) <- evalExpr expr1
+       (VInt value2) <- evalExpr expr2
+       case op of
+         Times -> return (VInt (value1 * value2))
+         Div -> if value2 == 0
+                then throwError (ErrorException ("Division by zero in expression: " ++ (printTree (EMul expr1 op expr2))))
+                else return (VInt (value1 `div` value2))
+         Mod -> if value2 == 0
+                then throwError (ErrorException ("Modulo by zero in expression: " ++ (printTree (EMul expr1 op expr2))))
+                else return (VInt (value1 `mod` value2))
+  EAdd expr1 op expr2 ->
+    do (VInt value1) <- evalExpr expr1
+       (VInt value2) <- evalExpr expr2
+       case op of
+         Plus -> return (VInt (value1 + value2))
+         Minus -> return (VInt (value1 - value2))
+  ERel expr1 op expr2 ->
+    do (VInt value1) <- evalExpr expr1
+       (VInt value2) <- evalExpr expr2
+       case op of
+         LTH -> return (VBoolean (expr1 < expr2))
+         LE  -> return (VBoolean (expr1 <= expr2))
+         GTH -> return (VBoolean (expr1 > expr2))
+         GE  -> return (VBoolean (expr1 >= expr2))
+         EQU -> return (VBoolean (expr1 == expr2))
+         NE  -> return (VBoolean (not (expr1 == expr2)))
+  EAnd expr1 expr2 ->
+    do (VBoolean value1) <- evalExpr expr1
+       (VBoolean value2) <- evalExpr expr2
+       return (VBoolean (value1 && value2))
+  EOr expr1 expr2 ->
+    do (VBoolean value1) <- evalExpr expr1
+       (VBoolean value2) <- evalExpr expr2
+       return (VBoolean (value1 || value2))
 
 
-
-execStmt :: Stmt -> Execution VarValue
+execStmt :: Stmt -> Execution ()
 execStmt stmt = case stmt of
-  Empty -> return VVoid
-  -- Bstmt (Block []) ->
-  Decl declType [] -> return VVoid
+  Empty -> return ()
+  BStmt (Block stmts) -> mapM_ execStmt stmts
+  Decl declType [] -> return ()
   Decl declType (item:t) -> case item of
     NoInit ident -> do ioValue <- liftIO $ newIORef (typeDefaultValue declType)
                        modify (Map.insert ident ioValue)
-                       return VVoid
+                       return ()
     Init ident expr -> do state <- get
                           exprValue <- evalExpr expr
                           ioValue <- liftIO $ newIORef exprValue
                           modify (Map.insert ident ioValue)
-                          return VVoid
-  Ret expr -> do evalExpr expr
+                          return ()
+  Ret expr -> do value <- evalExpr expr
+                 throwError (ReturnException value)
+  _ -> error("Unimplemented")
 
-makeFEnv :: Program -> FEnv
-makeFEnv (Program topdefs) = Map.fromList (zip (map funIdent topdefs) topdefs)
+makeFEnv :: [TopDef] -> FEnv
+makeFEnv topdefs = Map.fromList (zip (map funIdent topdefs) topdefs)
 
 parseProgram :: String -> Except Error Program
 parseProgram str =
@@ -121,12 +172,13 @@ execProgram :: Program -> IO ()
 execProgram (Program topdefs) = do
   runResult <- runExceptT (runStateT (runReaderT (evalExpr startExpr) startingEnv) startingMemState)
   case runResult of
-    Left errMsg -> putStrLn ("Runtime error: " ++ errMsg)
+    Left (ErrorException errMsg) -> putStrLn ("Runtime error: " ++ errMsg)
+    Left (ReturnException _) -> error("Return exception is not handled in evalExpr!")
     Right ((VInt value), memstate) -> putStrLn ("Return value: " ++ (show value))
     _ -> error("Main did not return int, most likely static analyzer fault ;(")
   where
     startExpr = (EApp (Ident "main") [])
-    startingEnv = Env {returnType=Void, fenv=Map.fromList []}
+    startingEnv = makeFEnv topdefs
     startingMemState = Map.fromList []
 
 main = do
