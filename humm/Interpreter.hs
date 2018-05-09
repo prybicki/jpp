@@ -75,7 +75,6 @@ evalExpr :: Expr -> Execution VarValue
 evalExpr expr = case expr of
   EVar ident ->
     do state <- get
-       liftIO $ putStrLn $ (show $ length state)
        liftIO $ readIORef $ fromJust (Map.lookup ident state) ("variable not found: " ++ (printTree ident))
   ELitInt n -> return (VInt n)
   ELitTrue -> return (VBoolean True)
@@ -83,7 +82,6 @@ evalExpr expr = case expr of
   EApp ident exprs ->
     do memstate <- get
        fenv <- ask
-       liftIO $ putStrLn $ (show ident) ++ (show exprs)
        let (FnDef declType _ args block) = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
        values <- mapM evalExpr exprs
        ioValues <- mapM (liftIO . newIORef) values
@@ -126,7 +124,6 @@ evalExpr expr = case expr of
        return (VBoolean (not value))
   EMul expr1 op expr2 ->
     do
-       -- liftIO $ putStrLn (printTree (EMul expr1 op expr2))
        (VInt value1) <- evalExpr expr1
        (VInt value2) <- evalExpr expr2
        case op of
@@ -191,11 +188,12 @@ execStmt stmt = case stmt of
                  throwError (ReturnException value)
   _ -> error("Unimplemented")
 
-builtins :: [TopDef]
-builtins = [ Builtin Void (Ident "print") [(Arg Str (Ident "text"))] ]
+builtins :: [(Ident, TopDef)]
+builtins =
+ [ ((Ident "print"), (Builtin Void (Ident "print") [(Arg Str (Ident "text"))])) ]
 
 makeFEnv :: [TopDef] -> FEnv
-makeFEnv topdefs = Map.fromList (zip (map funIdent topdefs) (builtins ++ topdefs))
+makeFEnv topdefs = Map.fromList (((zip (map funIdent topdefs)) topdefs) ++ builtins)
 
 parseProgram :: String -> Except Error Program
 parseProgram str =
