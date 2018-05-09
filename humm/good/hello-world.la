@@ -1,8 +1,8 @@
 int f(int x) {
-  return 123;
+  return x;
 }
 
 int main () {
-  int a = 2;
-  return a * f(42);
+  print("Oto program w moim jezyku, ktory chce powiedziec, ze Cie kocham :D");
+  return 0;
 }

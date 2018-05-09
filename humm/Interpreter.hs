@@ -82,39 +82,39 @@ evalExpr expr = case expr of
   EApp ident exprs ->
     do memstate <- get
        fenv <- ask
-       let (FnDef declType _ args block) = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
-       values <- mapM evalExpr exprs
-       ioValues <- mapM (liftIO . newIORef) values
-       do {
-          withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
-          return (typeDefaultValue declType)
-       }
-       `catchError` (\case
-         ReturnException varValue -> return varValue
-         err -> throwError err)
-       -- TODO: Skrócić to ;)
-       -- case topdef of
-         -- (Builtin declType _ args) ->
-         --   do values <- mapM evalExpr exprs
-         --      ioValues <- mapM (liftIO . newIORef) values
-         --      error("KURWA")
-         --      do {
-         --        withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execBuiltin ident);
-         --        error ("Builtin did not returned any value ;(")
-         --     }
-         --     `catchError` (\case
-         --       ReturnException varValue -> return varValue
-         --       err -> throwError err)
-         -- (FnDef declType _ args block) ->
-         --   do values <- mapM evalExpr exprs
-         --      ioValues <- mapM (liftIO . newIORef) values
-         --      do {
-         --         withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
-         --         return (typeDefaultValue declType)
-         --      }
-         --      `catchError` (\case
-         --        ReturnException varValue -> return varValue
-         --        err -> throwError err)
+       -- let (FnDef declType _ args block) = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
+       -- values <- mapM evalExpr exprs
+       -- ioValues <- mapM (liftIO . newIORef) values
+       -- do {
+       --    withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
+       --    return (typeDefaultValue declType)
+       -- }
+       -- `catchError` (\case
+       --   ReturnException varValue -> return varValue
+       --   err -> throwError err)
+       -- ---
+       let topdef = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
+       case topdef of
+         (Builtin declType _ args) ->
+           do values <- mapM evalExpr exprs
+              ioValues <- mapM (liftIO . newIORef) values
+              do {
+                withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execBuiltin ident);
+                error ("Builtin did not returned any value ;(")
+             }
+             `catchError` (\case
+               ReturnException varValue -> return varValue
+               err -> throwError err)
+         (FnDef declType _ args block) ->
+           do values <- mapM evalExpr exprs
+              ioValues <- mapM (liftIO . newIORef) values
+              do {
+                 withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
+                 return (typeDefaultValue declType)
+              }
+              `catchError` (\case
+                ReturnException varValue -> return varValue
+                err -> throwError err)
   EString str -> return (VString str)
   Neg expr ->
     do (VInt value) <- evalExpr expr
@@ -186,6 +186,7 @@ execStmt stmt = case stmt of
                           return ()
   Ret expr -> do value <- evalExpr expr
                  throwError (ReturnException value)
+  SExp expr -> do { (evalExpr expr); return () }
   _ -> error("Unimplemented")
 
 builtins :: [(Ident, TopDef)]
@@ -204,8 +205,8 @@ parseProgram str =
 makeGoodProgram :: String -> Except Error Program
 makeGoodProgram str =
   do parsedProgram <- parseProgram str
-     checkedProgram <- checkProgram' parsedProgram
-     return checkedProgram
+     -- checkedProgram <- checkProgram' parsedProgram
+     return parsedProgram ---------------------------------------------------------TODO ADD Checker and implement builtins there
   where -- TODO Remove when StaticCheck uses Except
     checkProgram' :: Program -> Except Error Program
     checkProgram' program = case checkProgram program of
