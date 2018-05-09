@@ -1,33 +1,21 @@
-{-# LINE 1 "Interpreter.hs" #-}
-module Main where
+module StaticCheck where
 
 import AbsLatte
-import LexLatte
-import ParLatte
 import PrintLatte
-import ErrM
 
-import Data.Map as Map hiding(map,foldl)
+import Common
+
+import Data.List
 import Data.Either as Either
-import System.Environment
+import Data.Map as Map hiding(map,foldl)
 
--- TODO LIST
--- Rzeczy do naprawienia:
---
--- →unikalność identyfikatorów (funkcje, zmienne, argumenty)
--- →nieobecność / zły typ main
+-- TODO: Make monads great here.
 
-type VarLocation = Int
-data VarValue
-  = VVoid
-  | VInt Integer
-  | VBoolean Bool
-  | VString String
-  deriving (Show)
-
-type PEnv = Map Ident TopDef
-type VEnv = Map Ident VarLocation
-type State = Map VarLocation VarValue
+-- Sprawdzenie typów funkcji:
+-- W wywołaniach zakładam, że funkcja ma typ zgodny z deklaracją
+-- Natomiast w definicji sprawdzam czy każdy return zwraca deklarowany typ
+-- W przypadku gdy pewna ścieżka nie kończy się return-em funkcja
+-- zwraca domyślną wartość dla zwracanego typu i generowane jest ostrzeżenie.
 
 type TEnv = Map Ident Type
 type Error = String
@@ -73,17 +61,21 @@ checkExprType tenv expr = case expr of
              then Left ("Invalid types in call: " ++ (printTree (EApp ident argExprs))) -- Todo printTree which arg is bad
              else Right declType
     _ -> Left ("Cannot call " ++ (printTree ident) ++ ", it is not a function")
--- -- --
---
+
+
+-- TODO Remove duplicated code :'(
 checkItemType :: TEnv -> Type -> Item -> Either Error TEnv
 checkItemType tenv declType item = case item of
-  NoInit ident -> Right (Map.insert ident declType tenv)
-  Init ident expr -> do
-                       exprType <- checkExprType tenv expr
-                       if declType == exprType
-                       then Right (Map.insert ident declType tenv)
-                       else Left ("Invalid type of initializer expression: " ++ (printTree expr) ++ ", expected " ++ (printTree declType))
---
+  NoInit ident -> if Map.member ident tenv
+                  then Left ("Double declaration of " ++ (printTree ident))
+                  else Right (Map.insert ident declType tenv)
+  Init ident expr -> if Map.member ident tenv
+                     then Left ("Double declaration of " ++ (printTree ident))
+                     else do exprType <- checkExprType tenv expr
+                             if declType == exprType
+                             then Right (Map.insert ident declType tenv)
+                             else Left ("Invalid type of initializer expression: " ++ (printTree expr) ++ ", expected " ++ (printTree declType))
+
 checkIdentHasType :: TEnv -> Type -> Ident -> Either Error ()
 checkIdentHasType tenv expectedType ident =
   case (Map.lookup ident tenv) of
@@ -92,8 +84,6 @@ checkIdentHasType tenv expectedType ident =
                       then Right ()
                       else Left ("Invalid type, expected expression of type " ++ (printTree foundType) ++ " to assign " ++ (printTree ident))
 
--- -- TODO: Poprawić to że tu się nic nie dzieje ;O
--- -- Potem dodać either
 checkStmt :: TEnv -> Type -> Stmt -> Either Error TEnv
 checkStmt tenv expectedRetType stmt = case stmt of
   Empty -> Right tenv
@@ -133,110 +123,40 @@ checkStmt tenv expectedRetType stmt = case stmt of
                                       else Left ("Invalid initial or end value of for loop: " ++ (printTree initExpr) ++ " or " ++ (printTree endExpr))
   SExp expr -> do checkExprType tenv expr
                   return tenv
---
-argType :: Arg -> Type
-argType (Arg declType _) = declType
 
-funIdent :: TopDef -> Ident
-funIdent (FnDef _ ident _ _) = ident
+addIdentToTEnv :: TEnv -> (Ident, Type) -> Either Error TEnv
+addIdentToTEnv tenv (ident, declType) = if Map.notMember ident tenv
+                                     then Right (Map.insert ident declType tenv)
+                                     else Left ("duplicated identifier " ++ (printTree ident))
 
-funType :: TopDef -> Type
-funType (FnDef declType _ args _) = Fun declType (map argType args)
-
-addArgsToTEnv :: TEnv -> [Arg] -> TEnv
-addArgsToTEnv tenv args = foldl (\env (Arg declType ident) -> Map.insert ident declType env) tenv args
+addArgsToTEnv :: TEnv -> [Arg] -> Either Error TEnv
+addArgsToTEnv tenv args = case args of
+  [] -> Right tenv
+  ((Arg declType ident):t) -> do tenv' <- addIdentToTEnv tenv (ident, declType)
+                                 addArgsToTEnv tenv' t
 
 checkTopdefs :: TEnv -> [TopDef] -> Either Error ()
 checkTopdefs tenv topdefs = case topdefs of
-  [] -> return ()
+  [] -> Right ()
   ((FnDef declType ident args block):t) ->
-    do
-    let tenv' = addArgsToTEnv tenv args
-    checkStmt tenv' declType (BStmt block)
-    checkTopdefs tenv t
+    do tenvWithArgs <- addArgsToTEnv tenv args
+       checkStmt tenvWithArgs declType (BStmt block)
+       checkTopdefs tenv t
+
+elementsUnique :: Ord a => [a] -> Bool
+elementsUnique lst = length (group (sort lst)) == length lst
 
 checkProgram :: Program -> Either Error ()
 checkProgram (Program topdefs) =
-  let tenv = (Map.fromList $ zip (map funIdent topdefs) (map funType topdefs))
-  in do checkTopdefs tenv topdefs
-        return ()
-
-makeProgram :: String -> Either Error Program
-makeProgram s = case pProgram (myLexer s) of
-  Bad s -> Left s
-  Ok e -> Right e
-
-main = do
-  args <- getArgs
-  fileStr <- readFile $ args !! 0
-  let eitherProgram = makeProgram fileStr
-  case eitherProgram of
-    Left err -> putStrLn err
-    Right program ->
-      case (checkProgram program) of
-        Left err -> putStrLn err
-        Right () -> putStrLn "OK"
-
-
--- Sprawdzenie typów funkcji:
--- W wywołaniach zakładam, że funkcja ma typ zgodny z deklaracją
--- Natomiast w definicji sprawdzam czy każdy return zwraca deklarowany typ
--- W przypadku gdy pewna ścieżka nie kończy się return-em funkcja
--- zwraca domyślną wartość dla zwracanego typu i generowane jest ostrzeżenie.
-
---
--- makePEnv :: [TopDef] -> PEnv
--- makePEnv topdefs = Map.fromList $ zip (map fnIdent topdefs) (topdefs)
---
-
-
--- checkTypes :: Program -> VarValue
--- checkTypes (Program topdefs) =
---   let penv = makePEnv topdefs
---   in checkTypes
-
--- interpret :: Program -> VarValue
--- interpret (Program topdefs) =
---   let penv = makePEnv topdefs
---   in evalExpr penv (Map.fromList []) (Map.fromList []) (EApp (Ident "main") [])
---
--- main = do
---   interact latte
---   putStrLn ""
---
--- latte s =
---   case pProgram (myLexer s) of
---     Ok e -> printTree (interpret e)
---     Bad s -> printTree s
-
-
---
--- evalExpr :: PEnv -> VEnv -> State -> Expr -> VarValue
--- evalExpr penv venv state (ELitInt i) = VInt i
--- evalExpr penv venv state ELitTrue = VBoolean True
--- evalExpr penv venv state ELitFalse = VBoolean False
--- evalExpr penv venv state (EString str) = VString str
--- evalExpr penv venv state (EMul e1 Times e2) = let VInt n1 = evalExpr penv venv state e1
---                                                   VInt n2 = evalExpr penv venv state e2
---                                                   in VInt (n1 * n2)
---
--- evalExpr penv venv state (EApp ident args) =
---   let maybeTopdef = (Map.lookup ident penv)
---   in case maybeTopdef of
---      Nothing -> error("Function " ++ (printTree ident) ++ " is not in scope")
---      Just (FnDef t i args block) -> let (_, _, maybeReturn) = evalStmt penv venv state (BStmt block)
---                                    in case maybeReturn of
---                                       Nothing -> error("Function " ++ printTree ident ++ " did not returned any value")
---                                       Just VVoid -> error("Ooops - ta funkcja nie powinna byc w tym miejscu")
---                                       Just value -> value
---
--- evalStmt :: PEnv -> VEnv -> State -> Stmt -> (VEnv, State, Maybe VarValue)
--- evalStmt penv venv state stmt = case stmt of
---   Empty -> (venv, state, Nothing)
---   VRet -> (venv, state, Just VVoid)
---   Ret e -> (venv, state, Just (evalExpr penv venv state e))
---   BStmt (Block []) -> (venv, state, Nothing)
---   BStmt (Block (h:t)) -> let (venv', state', v) = evalStmt penv venv state h
---                          in case v of
---                             Nothing -> evalStmt penv venv' state' (BStmt (Block t))
---                             Just value -> (venv', state', (Just value))
+  if not (elementsUnique (map funIdent topdefs))
+  then Left ("function names are not unique")
+  else let tenv = (Map.fromList $ zip (map funIdent topdefs) (map funType topdefs))
+           maybeMain = Map.lookup (Ident "main") tenv
+       in case maybeMain of
+             Nothing -> Left ("Function main is not defined")
+             Just (Fun declType args) ->
+               if length args > 0
+               then Left ("Function main should not have arguments")
+               else if not (declType == Int)
+                    then Left ("Function main should be declared as int")
+                    else checkTopdefs tenv topdefs
