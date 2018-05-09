@@ -33,70 +33,170 @@ data VarValue
   deriving (Show, Eq, Ord)
 
 type FEnv = Map Ident TopDef
-type VEnv = Map Ident (IORef VarValue)
-type Execution a = ReaderT FEnv (StateT VEnv (ExceptT String IO)) a
+data Env = Env {returnType :: Type, fenv :: FEnv}
+type MemState = Map Ident (IORef VarValue)
+data ExceptionType = Return VarValue | Error String 
+type Execution a = ReaderT Env (StateT MemState (ExceptT ExceptionType IO)) a
 
 --------------------------------------------------------------------------------
 
-makeProgram :: String -> Either Error Program
-makeProgram s = case pProgram (myLexer s) of
-  Bad err -> throwError err
-  Ok e -> return e
-
-
--- execStmt :: Integer -> Execution VarValue
--- execStmt stmt
---   | stmt < 5 = do iovar <- liftIO $ newIORef (VInt stmt)
---                   modify (Map.insert (Ident "var") iovar)
---                   liftIO $ putStrLn "added var"
---                   liftIO $ putStrLn $ show (foldl (+) 0 [1..10000])
---                   throwError ("meh")
-
-defaultVarValue :: Type -> VarValue
-defaultVarValue declType = case declType of
+typeDefaultValue :: Type -> VarValue
+typeDefaultValue declType = case declType of
   Int -> VInt 0
   Str -> VString ""
   Bool -> VBoolean False
-  _ -> error("it should never happen ;)")
+
+-- addVariables :: [(Ident, Expr)] -> MemState -> MemState
+-- addVariables lst memstate = Map.empty
+
+withStateDo state action =
+  do oldState <- get
+     put state
+     ret <- action
+     put oldState
+     return ret
+
+-- Todo na from list
+-- makeStateFromArgsExprs :: [(Ident, Value)] -> MemState
+-- makeStateFromArgs lst = aux Map.empty lst where
+--   aux memstate [] = memstate
+--   aux
+--
 
 evalExpr :: Expr -> Execution VarValue
 evalExpr expr = case expr of
-  EVar ident -> do state <- get
-                   return $ fromJust $ Map.lookup ident state
+  EVar ident ->
+    do state <- get
+       liftIO $ readIORef $ fromJust $ Map.lookup ident state
+  ELitInt n -> do return (VInt n)
+  EApp ident exprs ->
+    do memstate <- get
+       env <- ask
+       fenv <- asks fenv
+       let (FnDef declType _ args block) = fromJust $ Map.lookup ident fenv
+       values <- mapM evalExpr exprs
+       ioValues <- mapM (liftIO . newIORef) values
+       withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block))
+
+
 
 execStmt :: Stmt -> Execution VarValue
 execStmt stmt = case stmt of
   Empty -> return VVoid
+  -- Bstmt (Block []) ->
   Decl declType [] -> return VVoid
   Decl declType (item:t) -> case item of
-    NoInit ident -> do ioValue <- liftIO $ newIORef (defaultVarValue declType)
+    NoInit ident -> do ioValue <- liftIO $ newIORef (typeDefaultValue declType)
                        modify (Map.insert ident ioValue)
                        return VVoid
-    Init ident expr -> do fenv <- ask
-                          state <- get
-                          exprValue <- runExceptT (runStateT (runReaderT (evalExpr expr) fenv) state)
+    Init ident expr -> do state <- get
+                          exprValue <- evalExpr expr
                           ioValue <- liftIO $ newIORef exprValue
                           modify (Map.insert ident ioValue)
-
+                          return VVoid
+  Ret expr -> do evalExpr expr
 
 makeFEnv :: Program -> FEnv
 makeFEnv (Program topdefs) = Map.fromList (zip (map funIdent topdefs) topdefs)
 
+parseProgram :: String -> Except Error Program
+parseProgram str =
+  case pProgram (myLexer str) of
+    Bad errMsg -> throwError ("Parse error: " ++ errMsg)
+    Ok parsedProgram -> return parsedProgram
+
+makeGoodProgram :: String -> Except Error Program
+makeGoodProgram str =
+  do parsedProgram <- parseProgram str
+     checkedProgram <- checkProgram' parsedProgram
+     return checkedProgram
+  where -- TODO Remove when StaticCheck uses Except
+    checkProgram' :: Program -> Except Error Program
+    checkProgram' program = case checkProgram program of
+      Left err -> throwError err
+      Right () -> return program
+
+
+execProgram :: Program -> IO ()
+execProgram (Program topdefs) = do
+  runResult <- runExceptT (runStateT (runReaderT (evalExpr startExpr) startingEnv) startingMemState)
+  case runResult of
+    Left errMsg -> putStrLn ("Runtime error: " ++ errMsg)
+    Right ((VInt value), memstate) -> putStrLn ("Return value: " ++ (show value))
+    _ -> error("Main did not return int, most likely static analyzer fault ;(")
+  where
+    startExpr = (EApp (Ident "main") [])
+    startingEnv = Env {returnType=Void, fenv=Map.fromList []}
+    startingMemState = Map.fromList []
 
 main = do
   args <- getArgs
   fileStr <- readFile $ args !! 0
-  let eitherProgram = makeProgram fileStr
-  case eitherProgram of
+  let maybeProgram = runExcept $ makeGoodProgram fileStr
+  case maybeProgram of
     Left err -> putStrLn err
-    Right program ->
-      case (checkProgram program) of
-        Left err -> putStrLn err
-        Right () -> case program of
-          (Program []) -> error("static")
-          (Program lst) -> let Just (FnDef _ _ _ block) = find (\(FnDef _ ident _ _) -> ident == (Ident "main")) lst
-                           in do a <- runExceptT (runStateT (runReaderT (execStmt (BStmt block)) (makeFEnv (Program lst))) (Map.fromList []))
-                                 print ("OK")
+    Right program -> execProgram program
+
+  --   checkProgram program
+  --   return program
+  -- case program of
+  --   Left err ->
+  --
+  -- case parseResult of
+  --  Bad err -> putStrLn ("Failed to parse program: " ++ err)
+  --  Ok program -> do goodProgram <- checkProgram program
+  --                   return goodProgram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  -- case (checkProgram program) of
+  --   Left err -> putStrLn err
+  --   Right () -> case program of
+  --     (Program []) -> error("static")
+  --     (Program lst) -> let Just (FnDef _ _ _ block) = find (\(FnDef _ ident _ _) -> ident == (Ident "main")) lst
+  --                      in do a <- runExceptT (runStateT (runReaderT (execStmt (BStmt block)) (makeFEnv (Program lst))) (Map.fromList []))
+  --                         print ("OK")
+
+
+                                 -- execStmt :: Integer -> Execution VarValue
+                                 -- execStmt stmt
+                                 --   | stmt < 5 = do iovar <- liftIO $ newIORef (VInt stmt)
+                                 --                   modify (Map.insert (Ident "var") iovar)
+                                 --                   liftIO $ putStrLn "added var"
+                                 --                   liftIO $ putStrLn $ show (foldl (+) 0 [1..10000])
+                                 --                   throwError ("meh")
 
 
 -- main = do

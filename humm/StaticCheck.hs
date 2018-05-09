@@ -4,7 +4,6 @@ import AbsLatte
 import PrintLatte
 
 import Common
-
 import Data.List
 import Data.Either as Either
 import Data.Map as Map hiding(map,foldl)

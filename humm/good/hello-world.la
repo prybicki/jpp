@@ -1,12 +1,4 @@
 int main () {
-  boolean a = true;
-  if(a)
-  {
-    return 2+3*4;
-  }
-  else
-  {
-    return 1+2*3;
-  }
-  return 0;
+  int a = 5;
+  return a;
 }
