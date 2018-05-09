@@ -6,6 +6,8 @@ Program.   Program ::= [TopDef] ;
 
 FnDef.	   TopDef ::= Type Ident "(" [Arg] ")" Block ;
 
+internal   Builtin. TopDef ::= Type Ident "(" [Arg] ")" ;
+
 separator nonempty TopDef "" ;
 
 Arg. 	   Arg ::= Type Ident;
@@ -24,7 +26,7 @@ BStmt.     Stmt ::= Block ;
 
 Decl.      Stmt ::= Type [Item] ";" ;
 
-NoInit.    Item ::= Ident ; 
+NoInit.    Item ::= Ident ;
 
 Init.      Item ::= Ident "=" Expr ;
 
@@ -46,7 +48,7 @@ CondElse.  Stmt ::= "if" "(" Expr ")" Stmt "else" Stmt  ;
 
 While.     Stmt ::= "while" "(" Expr ")" Stmt ;
 
-For.       Stmt ::= "for" "(" "int" Ident "=" Expr ForT Expr ")" Stmt ; 
+For.       Stmt ::= "for" "(" "int" Ident "=" Expr ForT Expr ")" Stmt ;
 
 SExp.      Stmt ::= Expr  ";" ;
 
@@ -133,4 +135,3 @@ comment    "#" ;
 comment    "//" ;
 
 comment    "/*" "*/" ;
-

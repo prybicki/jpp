@@ -20,12 +20,14 @@ import Control.Monad.Except
 import Control.Monad.State
 import Control.Monad.Reader
 import Data.IORef
-import Data.Maybe
 
 -- Guarantees from static checker:
 -- → All identifiers in any scope are unique and are one of Type
 -- → All returns have matching type to declared
 -- → Expressions have correct typing
+-- → There are no topdefs colliding with builtins
+-- → All referenced variables exist in scope
+-- → All called functions exist in scope
 
 data VarValue
   = VVoid
@@ -46,6 +48,11 @@ typeDefaultValue declType = case declType of
   Int -> VInt 0
   Str -> VString ""
   Bool -> VBoolean False
+
+fromJust :: Maybe a -> String -> a
+fromJust Nothing errMsg = error errMsg
+fromJust (Just x) errMsg = x
+
 
 -- addVariables :: [(Ident, Expr)] -> MemState -> MemState
 -- addVariables lst memstate = Map.empty
@@ -68,14 +75,16 @@ evalExpr :: Expr -> Execution VarValue
 evalExpr expr = case expr of
   EVar ident ->
     do state <- get
-       liftIO $ readIORef $ fromJust $ Map.lookup ident state
+       liftIO $ putStrLn $ (show $ length state)
+       liftIO $ readIORef $ fromJust (Map.lookup ident state) ("variable not found: " ++ (printTree ident))
   ELitInt n -> return (VInt n)
   ELitTrue -> return (VBoolean True)
   ELitFalse -> return (VBoolean False)
   EApp ident exprs ->
     do memstate <- get
        fenv <- ask
-       let (FnDef declType _ args block) = fromJust $ Map.lookup ident fenv
+       liftIO $ putStrLn $ (show ident) ++ (show exprs)
+       let (FnDef declType _ args block) = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
        values <- mapM evalExpr exprs
        ioValues <- mapM (liftIO . newIORef) values
        do {
@@ -85,6 +94,29 @@ evalExpr expr = case expr of
        `catchError` (\case
          ReturnException varValue -> return varValue
          err -> throwError err)
+       -- TODO: Skrócić to ;)
+       -- case topdef of
+         -- (Builtin declType _ args) ->
+         --   do values <- mapM evalExpr exprs
+         --      ioValues <- mapM (liftIO . newIORef) values
+         --      error("KURWA")
+         --      do {
+         --        withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execBuiltin ident);
+         --        error ("Builtin did not returned any value ;(")
+         --     }
+         --     `catchError` (\case
+         --       ReturnException varValue -> return varValue
+         --       err -> throwError err)
+         -- (FnDef declType _ args block) ->
+         --   do values <- mapM evalExpr exprs
+         --      ioValues <- mapM (liftIO . newIORef) values
+         --      do {
+         --         withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
+         --         return (typeDefaultValue declType)
+         --      }
+         --      `catchError` (\case
+         --        ReturnException varValue -> return varValue
+         --        err -> throwError err)
   EString str -> return (VString str)
   Neg expr ->
     do (VInt value) <- evalExpr expr
@@ -93,7 +125,9 @@ evalExpr expr = case expr of
     do (VBoolean value) <- evalExpr expr
        return (VBoolean (not value))
   EMul expr1 op expr2 ->
-    do (VInt value1) <- evalExpr expr1
+    do
+       -- liftIO $ putStrLn (printTree (EMul expr1 op expr2))
+       (VInt value1) <- evalExpr expr1
        (VInt value2) <- evalExpr expr2
        case op of
          Times -> return (VInt (value1 * value2))
@@ -129,6 +163,16 @@ evalExpr expr = case expr of
        return (VBoolean (value1 || value2))
 
 
+execBuiltin :: Ident -> Execution VarValue
+execBuiltin (Ident name) = case name of
+  "print" -> -- void print(string text)
+    do memstate <- get
+       (VString text) <- liftIO $ readIORef $ fromJust (Map.lookup (Ident "text") memstate) "builtin argument not found: text"
+       liftIO $ putStrLn text
+       throwError (ReturnException VVoid)
+  _ -> error("Congratulations, you succeded to call non-existing builtin!")
+
+
 execStmt :: Stmt -> Execution ()
 execStmt stmt = case stmt of
   Empty -> return ()
@@ -147,8 +191,11 @@ execStmt stmt = case stmt of
                  throwError (ReturnException value)
   _ -> error("Unimplemented")
 
+builtins :: [TopDef]
+builtins = [ Builtin Void (Ident "print") [(Arg Str (Ident "text"))] ]
+
 makeFEnv :: [TopDef] -> FEnv
-makeFEnv topdefs = Map.fromList (zip (map funIdent topdefs) topdefs)
+makeFEnv topdefs = Map.fromList (zip (map funIdent topdefs) (builtins ++ topdefs))
 
 parseProgram :: String -> Except Error Program
 parseProgram str =

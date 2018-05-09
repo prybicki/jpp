@@ -18,6 +18,7 @@ transProgram x = case x of
 transTopDef :: TopDef -> Result
 transTopDef x = case x of
   FnDef type_ ident args block -> failure x
+  Builtin type_ ident args -> failure x
 transArg :: Arg -> Result
 transArg x = case x of
   Arg type_ ident -> failure x

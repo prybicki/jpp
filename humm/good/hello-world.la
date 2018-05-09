@@ -1,5 +1,5 @@
 int f(int x) {
-  return x;
+  return 123;
 }
 
 int main () {
