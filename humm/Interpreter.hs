@@ -22,12 +22,18 @@ import Control.Monad.Reader
 import Data.IORef
 
 -- Guarantees from static checker:
--- → All identifiers in any scope are unique and are one of Type
--- → All returns have matching type to declared
+-- → All identifiers in any scope are unique and has unequivocal type
+-- → All returns have correct type (as enclosing function return type)
 -- → Expressions have correct typing
 -- → There are no topdefs colliding with builtins
 -- → All referenced variables exist in scope
 -- → All called functions exist in scope
+
+-- TODO:
+-- Make static checker great again (use monads), add collision checking
+-- Make all needed builtins
+-- Refactor code to be more compact
+-- Test, test, test
 
 data VarValue
   = VVoid
@@ -108,6 +114,7 @@ evalExpr expr = case expr of
          (FnDef declType _ args block) ->
            do values <- mapM evalExpr exprs
               ioValues <- mapM (liftIO . newIORef) values
+              liftIO $ putStrLn ("calling " ++ (printTree ident) ++ " " ++ (show values) ++ " from: " ++ (printTree exprs))
               do {
                  withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
                  return (typeDefaultValue declType)
@@ -144,12 +151,12 @@ evalExpr expr = case expr of
     do (VInt value1) <- evalExpr expr1
        (VInt value2) <- evalExpr expr2
        case op of
-         LTH -> return (VBoolean (expr1 < expr2))
-         LE  -> return (VBoolean (expr1 <= expr2))
-         GTH -> return (VBoolean (expr1 > expr2))
-         GE  -> return (VBoolean (expr1 >= expr2))
-         EQU -> return (VBoolean (expr1 == expr2))
-         NE  -> return (VBoolean (not (expr1 == expr2)))
+         LTH -> return (VBoolean (value1 < value2))
+         LE  -> return (VBoolean (value1 <= value2))
+         GTH -> return (VBoolean (value1 > value2))
+         GE  -> return (VBoolean (value1 >= value2))
+         EQU -> return (VBoolean (value1 == value2))
+         NE  -> return (VBoolean (not (value1 == value2)))
   EAnd expr1 expr2 ->
     do (VBoolean value1) <- evalExpr expr1
        (VBoolean value2) <- evalExpr expr2
@@ -179,15 +186,71 @@ execStmt stmt = case stmt of
     NoInit ident -> do ioValue <- liftIO $ newIORef (typeDefaultValue declType)
                        modify (Map.insert ident ioValue)
                        return ()
-    Init ident expr -> do state <- get
-                          exprValue <- evalExpr expr
+    Init ident expr -> do exprValue <- evalExpr expr
                           ioValue <- liftIO $ newIORef exprValue
                           modify (Map.insert ident ioValue)
                           return ()
+  Ass ident expr -> do value <- evalExpr expr
+                       modifyVariable ident (const value)
+  Incr ident -> modifyVariable ident (\(VInt n) -> (VInt (n+1)))
+  Decr ident -> modifyVariable ident (\(VInt n) -> (VInt (n-1)))
   Ret expr -> do value <- evalExpr expr
                  throwError (ReturnException value)
+  VRet -> throwError (ReturnException VVoid)
+  Cond expr stmt ->
+    do (VBoolean condition) <- evalExpr expr
+       if not condition
+       then do return ()
+       else do execAndDropDeclarations stmt
+  CondElse expr ifstmt elsestmt ->
+    do (VBoolean condition) <- evalExpr expr
+       if condition
+       then do execAndDropDeclarations ifstmt
+       else do execAndDropDeclarations elsestmt
+  While expr stmt ->
+    do (VBoolean condition) <- evalExpr expr
+       if condition
+       then do execAndDropDeclarations stmt
+               execStmt (While expr stmt)
+       else return ()
+  For counterIdent startExpr forType stopExpr stmt ->
+    do memstate <- get
+       firstValue <- evalExpr startExpr
+       lastValue <- evalExpr stopExpr
+       ioValue <- liftIO $ newIORef firstValue
+       modify (Map.insert counterIdent ioValue)
+       doFor counterIdent forType lastValue stmt
+       put memstate
   SExp expr -> do { (evalExpr expr); return () }
-  _ -> error("Unimplemented")
+  where
+   doFor :: Ident -> ForT -> VarValue -> Stmt -> Execution ()
+   doFor counterIdent forType (VInt lastValue) stmt =
+    do (VInt counterValue) <- readVariable counterIdent
+       let (condition, modifierFun) = case forType of
+                                        ForUp -> ((counterValue <= lastValue), (\(VInt x) -> (VInt (x+1))))
+                                        ForDown -> ((counterValue >= lastValue), (\(VInt x) -> (VInt (x-1))))
+       if condition
+       then do execAndDropDeclarations stmt
+               modifyVariable counterIdent modifierFun
+               doFor counterIdent forType (VInt lastValue) stmt
+       else return ()
+   -- TODO: wydzielić wszystkie powtarzające się idiomy do funkcji
+   readVariable :: Ident -> Execution VarValue
+   readVariable ident =
+    do memstate <- get
+       liftIO $ readIORef $ fromJust (Map.lookup ident memstate) ("variable not found: " ++ (printTree ident))
+   modifyVariable :: Ident -> (VarValue -> VarValue) -> Execution ()
+   modifyVariable ident fun =
+    do memstate <- get
+       ref <- return $ fromJust (Map.lookup ident memstate) ("variable not found")
+       liftIO $ modifyIORef ref fun
+       return ()
+   execAndDropDeclarations :: Stmt -> Execution ()
+   execAndDropDeclarations stmt =
+    do memstate <- get
+       execStmt stmt
+       put memstate
+       return ()
 
 builtins :: [(Ident, TopDef)]
 builtins =
