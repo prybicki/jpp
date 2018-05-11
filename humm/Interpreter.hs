@@ -252,12 +252,10 @@ execStmt stmt = case stmt of
        put memstate
        return ()
 
-builtins :: [(Ident, TopDef)]
-builtins =
- [ ((Ident "print"), (Builtin Void (Ident "print") [(Arg Str (Ident "text"))])) ]
+
 
 makeFEnv :: [TopDef] -> FEnv
-makeFEnv topdefs = Map.fromList (((zip (map funIdent topdefs)) topdefs) ++ builtins)
+makeFEnv topdefs = Map.fromList (((zip (map funIdent topdefs)) (topdefs ++ builtins)))
 
 parseProgram :: String -> Except Error Program
 parseProgram str =
