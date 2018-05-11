@@ -66,12 +66,12 @@ checkFunctionDeclarations topdefs =
          do tenv <- get
             mainType <- tryFromJust (Map.lookup (Ident "main") tenv) "Missing main declaration"
             case mainType of
-              Fun Void [] -> return ()
-              _ -> throwError ("Incorrect main signature, expected int main()")
+              Fun Int [] -> return ()
+              x -> throwError ("Incorrect main signature, expected int (), found: " ++ (printTree x))
 
 -- Argument names are unique (among any identifier, including functions).
 -- Function body is correct.
--- Does not check builtins.
+-- Assumes builtins are correct.
 checkFunctionDefinitions :: [TopDef] -> Check ()
 checkFunctionDefinitions topdefs = foldM (\() -> checkFunctionDefinition) () topdefs
   where

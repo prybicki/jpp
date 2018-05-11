@@ -5,7 +5,6 @@ import Data.Map as Map hiding(map, foldl)
 import Data.List
 
 type TEnv = Map Ident Type
-type FEnv = Map Ident TopDef
 type ErrorMsg = String
 
 emptyTEnv :: TEnv
@@ -22,9 +21,12 @@ argTypes = map argType
 
 funIdent :: TopDef -> Ident
 funIdent (FnDef _ ident _ _) = ident
+funIdent (Builtin _ ident _) = ident
+
 
 funType :: TopDef -> Type
 funType (FnDef declType _ args _) = Fun declType (map argType args)
+funType (Builtin declType _ args) = Fun declType (map argType args)
 
 elementsUnique :: Ord a => [a] -> Bool
 elementsUnique lst = length (group (sort lst)) == length lst

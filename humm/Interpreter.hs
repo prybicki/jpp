@@ -30,10 +30,10 @@ import Data.IORef
 -- → All called functions exist in scope
 
 -- TODO:
--- Make static checker great again (use monads), add collision checking
 -- Make all needed builtins
 -- Refactor code to be more compact
 -- Test, test, test
+-- README!
 
 data VarValue
   = VVoid
@@ -55,13 +55,9 @@ typeDefaultValue declType = case declType of
   Str -> VString ""
   Bool -> VBoolean False
 
-fromJust :: Maybe a -> String -> a
-fromJust Nothing errMsg = error errMsg
-fromJust (Just x) errMsg = x
-
-
--- addVariables :: [(Ident, Expr)] -> MemState -> MemState
--- addVariables lst memstate = Map.empty
+forceFromJust :: Maybe a -> String -> a
+forceFromJust Nothing errMsg = error errMsg
+forceFromJust (Just x) errMsg = x
 
 withStateDo state action =
   do oldState <- get
@@ -81,25 +77,14 @@ evalExpr :: Expr -> Execution VarValue
 evalExpr expr = case expr of
   EVar ident ->
     do state <- get
-       liftIO $ readIORef $ fromJust (Map.lookup ident state) ("variable not found: " ++ (printTree ident))
+       liftIO $ readIORef $ forceFromJust (Map.lookup ident state) ("variable not found: " ++ (printTree ident))
   ELitInt n -> return (VInt n)
   ELitTrue -> return (VBoolean True)
   ELitFalse -> return (VBoolean False)
   EApp ident exprs ->
     do memstate <- get
        fenv <- ask
-       -- let (FnDef declType _ args block) = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
-       -- values <- mapM evalExpr exprs
-       -- ioValues <- mapM (liftIO . newIORef) values
-       -- do {
-       --    withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
-       --    return (typeDefaultValue declType)
-       -- }
-       -- `catchError` (\case
-       --   ReturnException varValue -> return varValue
-       --   err -> throwError err)
-       -- ---
-       let topdef = fromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
+       let topdef = forceFromJust (Map.lookup ident fenv) ("topdef not found: " ++ (printTree ident))
        case topdef of
          (Builtin declType _ args) ->
            do values <- mapM evalExpr exprs
@@ -114,7 +99,6 @@ evalExpr expr = case expr of
          (FnDef declType _ args block) ->
            do values <- mapM evalExpr exprs
               ioValues <- mapM (liftIO . newIORef) values
-              liftIO $ putStrLn ("calling " ++ (printTree ident) ++ " " ++ (show values) ++ " from: " ++ (printTree exprs))
               do {
                  withStateDo (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
                  return (typeDefaultValue declType)
@@ -171,7 +155,7 @@ execBuiltin :: Ident -> Execution VarValue
 execBuiltin (Ident name) = case name of
   "print" -> -- void print(string text)
     do memstate <- get
-       (VString text) <- liftIO $ readIORef $ fromJust (Map.lookup (Ident "text") memstate) "builtin argument not found: text"
+       (VString text) <- liftIO $ readIORef $ forceFromJust (Map.lookup (Ident "text") memstate) "builtin argument not found: text"
        liftIO $ putStrLn text
        throwError (ReturnException VVoid)
   _ -> error("Congratulations, you succeded to call non-existing builtin!")
@@ -238,11 +222,11 @@ execStmt stmt = case stmt of
    readVariable :: Ident -> Execution VarValue
    readVariable ident =
     do memstate <- get
-       liftIO $ readIORef $ fromJust (Map.lookup ident memstate) ("variable not found: " ++ (printTree ident))
+       liftIO $ readIORef $ forceFromJust (Map.lookup ident memstate) ("variable not found: " ++ (printTree ident))
    modifyVariable :: Ident -> (VarValue -> VarValue) -> Execution ()
    modifyVariable ident fun =
     do memstate <- get
-       ref <- return $ fromJust (Map.lookup ident memstate) ("variable not found")
+       ref <- return $ forceFromJust (Map.lookup ident memstate) ("variable not found")
        liftIO $ modifyIORef ref fun
        return ()
    execAndDropDeclarations :: Stmt -> Execution ()
@@ -257,23 +241,21 @@ execStmt stmt = case stmt of
 makeFEnv :: [TopDef] -> FEnv
 makeFEnv topdefs = Map.fromList (((zip (map funIdent topdefs)) (topdefs ++ builtins)))
 
-parseProgram :: String -> Except Error Program
-parseProgram str =
-  case pProgram (myLexer str) of
-    Bad errMsg -> throwError ("Parse error: " ++ errMsg)
-    Ok parsedProgram -> return parsedProgram
 
-makeGoodProgram :: String -> Except Error Program
-makeGoodProgram str =
-  do parsedProgram <- parseProgram str
-     -- checkedProgram <- checkProgram' parsedProgram
-     return parsedProgram ---------------------------------------------------------TODO ADD Checker and implement builtins there
-  where -- TODO Remove when StaticCheck uses Except
-    checkProgram' :: Program -> Except Error Program
-    checkProgram' program = case checkProgram program of
-      Left err -> throwError err
-      Right () -> return program
 
+makeProgram :: String -> Except ErrorMsg Program
+makeProgram str =
+  do (Program topdefs) <- parseProgram str
+     let programWithBuiltins = (Program (builtins ++ topdefs))
+     case runStaticCheck programWithBuiltins of
+       Left errMsg -> throwError ("Static check error: " ++ errMsg)
+       Right () -> return programWithBuiltins
+  where
+   parseProgram :: String -> Except ErrorMsg Program
+   parseProgram str =
+     case pProgram (myLexer str) of
+       Bad errMsg -> throwError ("Parse error: " ++ errMsg)
+       Ok parsedProgram -> return parsedProgram
 
 execProgram :: Program -> IO ()
 execProgram (Program topdefs) = do
@@ -291,7 +273,7 @@ execProgram (Program topdefs) = do
 main = do
   args <- getArgs
   fileStr <- readFile $ args !! 0
-  let maybeProgram = runExcept $ makeGoodProgram fileStr
+  let maybeProgram = runExcept $ makeProgram fileStr
   case maybeProgram of
     Left err -> putStrLn err
     Right program -> execProgram program

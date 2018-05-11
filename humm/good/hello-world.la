@@ -11,6 +11,7 @@ int id(int x)
 }
 
 int main () {
-
-  return fact(35);
+  print("Ola jest najpiekniejsza w swiecie");
+  print("A oto 15-sta liczba fibonnaciego:");
+  return fact(15);
 }
