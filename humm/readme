@@ -1,0 +1,59 @@
+** Description
+
+My language is based heavily on latte language syntax/semantics.
+My own tiny influence on the grammar includes: 
+    →string operators: ++, ~~
+    →for loop (to/downto)
+
+** Features available in first iteration:
+
+*) Three variable/value types: int, boolean, string
+*) Declaration with default value, declaration with initialization
+*) Integer operators: +, -, *, /, %
+*) String operators: ++ (concatenation)
+*) Relative operators: ==, !=, <, <= , >, >=, ~~ (string comparison)
+*) Boolean operators: &&, ||, !
+*) Multiple variable declarations in one line
+*) Control flow: if, if-else, while, for
+*) For loop is always over continuous range of integers (either with increasing or decreasing counter)
+*) Functions:
+    →returns void or value
+    →any number of function parameters, passed by value
+    →recursive
+*) Builtins:
+    →void print(string text)
+    →int strToInt(string text)
+    →string intToStr(int number)
+*) Garbage collection
+20 pts features:
+*) Explicit handling of runtime errors:
+    →x / 0 -> Runtime error
+    →x % 0 -> Runtime error
+*) Functions returning values (mentioned above)
+
+** Things that are likely to be done (for 24 points):
+*) Allow names shadowing
+*) Int-indexed arrays
+*) Key-value dictionaries
+*) Keywords break and continue
+
+Implementation details:
+
+Common.hs -> shared functions
+StaticCheck.hs -> static analyser
+Interpreter.hs -> main and runtime
+
+Both static analyser and runtime are implemented in monadic-style.
+
+In static checker I use Reader + State + Except monad (constructed via monad transformers)
+    →Reader -> stores expected return type in current context
+    →State -> stores mapping (identifier -> type)
+    →Except -> for throwing type error messages
+
+In runtime I use the same combination of monads + IO, but with different meaning:
+    →Reader -> stores mapping of functions (either defined or builtin)
+    →State -> stores both environment and memory state, it is a mapping (identifier -> IORef Value)
+    →Except -> for unwinding execution in case of runtime error, return (and break and continue in future)
+
+Usage: ./interpreter <path-to-program>
+There are some diagnostics messages that indicate occurence of runtime or static checker faults.
