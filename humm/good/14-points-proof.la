@@ -1,0 +1,59 @@
+# 14 points:
+# Three variable types: int, boolean, string
+# Default initialization
+# Default return values
+# Construction if-else
+# Explicit output
+# String concatenation
+# Explicit conversions int <---> string
+# Pascal-like for loop
+
+boolean printAndTrue(string text)
+{
+  print(text);
+  return true;
+}
+
+int noreturn()
+{
+  print("I forgot to write return, what will be returned?");
+}
+
+
+int main()
+{
+  boolean strictOrLazy = printAndTrue("Logic here is lazy") && printAndTrue("Just a joke, it is strict");
+
+  int shouldBeZero;
+  string shouldBeEmpty;
+  string iHaveKitty = "kitty";
+  boolean shouldBeFalse, elseCanBeNested = true;
+
+  int a = 5, b = -5;
+  if(a != 5 || b != -5)
+    print("Oopsie..");
+
+  if(shouldBeZero == 0 && shouldBeEmpty ~~ "" && !shouldBeFalse)
+  {
+    print("Default initialization seems to work!");
+    if(shouldBeFalse)
+      print("Else does not work");
+    else if(elseCanBeNested)
+      print("Else can be nested");
+    else
+      print("Else cannot be nested"); // this else belongs to second if
+  }
+
+  int n = noreturn();
+  print("It returned: " ++ intToStr(n));
+
+  for(int i = 8 downto 6)
+  {
+    for(int j = 3 to 5)
+    {
+         print(intToStr(i) ++ " * " ++ intToStr(j) ++ " = " ++ intToStr(i*j));
+    }
+  }
+
+  return 42;
+}

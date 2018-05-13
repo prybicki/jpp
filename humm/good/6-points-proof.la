@@ -1,0 +1,25 @@
+# 6 points:
+# integer variables, assignments
+# if statement
+# while
+# arithmetic
+# comparisons in if statement
+
+int main()
+{
+  int zero;
+  int sum = 42;
+  sum = 0;
+  sum = zero;
+  if(sum == 0 && zero == 0)
+  {
+    int i = 0;
+    while(i <= 10)
+    {
+      sum = sum + i;
+      i++;
+    }
+    return sum; // will be 55
+  }
+  return -1;
+}

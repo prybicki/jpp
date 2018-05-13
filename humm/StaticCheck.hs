@@ -10,6 +10,11 @@ import Control.Monad.State
 import Control.Monad
 import Data.Map as Map hiding(map, foldl)
 
+-- Type of types environment.
+-- Values of this maps are not lists which is one of the drawbacks atm.
+type TEnv = Map Ident Type
+
+-- Monadic type to represent static check computations.
 type Check a = ReaderT Type (StateT TEnv (Except ErrorMsg)) a
 
 -- Drawbacks of static checker to be solved in future:
@@ -20,6 +25,14 @@ type Check a = ReaderT Type (StateT TEnv (Except ErrorMsg)) a
 -- invalid: int f() {} int g() { int f; }
 -- valid:   int f(int a) { int p; } int g(int a) { int p; }
 -- valid:   int f(int a) { int p; } int g(int p) { int a; }
+
+-- Guarantees from static checker:
+-- → All identifiers in any scope are unique and has unequivocal type
+--   → In particular, there are no topdefs colliding with builtins
+-- → All returns have correct type (as enclosing function return type)
+-- → Expressions are well-typed
+-- → All referenced variables exist in scope
+-- → All called functions exist in scope
 
 -- Main entry to static checker. Program topdefs should include builtins.
 runStaticCheck :: Program -> Either ErrorMsg ()
@@ -34,9 +47,9 @@ checkProgram (Program topdefs) =
      checkFunctionDefinitions topdefs
 
 -- -- -- Some helper functions -- -- --
-tryFromJust :: Maybe a -> ErrorMsg -> Check a
-tryFromJust Nothing errMsg = throwError errMsg
-tryFromJust (Just x) _ = return x
+
+emptyTEnv :: TEnv
+emptyTEnv = Map.empty
 
 tryAddToTEnv :: Ident -> Type -> ErrorMsg -> Check ()
 tryAddToTEnv ident declType errMsg =
@@ -106,12 +119,6 @@ checkIdentHasType ident expectedType errMsg =
      then return ()
      else throwError errMsg
 
-checkStmtAndDropDeclarations :: Stmt -> Check ()
-checkStmtAndDropDeclarations stmt =
-  do tenv <- get
-     checkStmt stmt
-     put tenv
-
 checkStmt :: Stmt -> Check ()
 checkStmt stmt = case stmt of
   Empty -> return ()
@@ -138,38 +145,39 @@ checkStmt stmt = case stmt of
              checkTypesEqual Void expectedRetType ("Missing return expression in function returning " ++ (printTree expectedRetType))
   Cond expr stmt -> do exprType <- checkExprType expr
                        checkTypesEqual Bool exprType ("Expected bool in if condition: " ++ (printTree expr))
-                       checkStmtAndDropDeclarations stmt
+                       doAndDropState (checkStmt stmt)
   CondElse expr stmt1 stmt2 -> do exprType <- checkExprType expr
                                   checkTypesEqual Bool exprType ("Expected bool in if-else condition: "  ++ (printTree expr))
-                                  checkStmtAndDropDeclarations stmt1
-                                  checkStmtAndDropDeclarations stmt2
+                                  doAndDropState (checkStmt stmt1)
+                                  doAndDropState (checkStmt stmt2)
   While expr stmt -> do exprType <- checkExprType expr
-                        checkStmtAndDropDeclarations stmt
-  For _ initExpr _ endExpr stmt -> do initType <- checkExprType initExpr
-                                      endType <- checkExprType endExpr
-                                      checkTypesEqual Int initType ("Invalid start value type in for loop in expression: " ++ (printTree initExpr))
-                                      checkTypesEqual Int endType ("Invalid end value type in for loop in expression: " ++ (printTree endExpr))
-                                      checkStmtAndDropDeclarations stmt
+                        doAndDropState (checkStmt stmt)
+  For ident initExpr _ endExpr stmt -> do initType <- checkExprType initExpr
+                                          endType <- checkExprType endExpr
+                                          tryAddToTEnv ident initType ("Duplicated declaration of local variable: " ++ (printTree ident))
+                                          checkTypesEqual Int initType ("Invalid start value type in for loop in expression: " ++ (printTree initExpr))
+                                          checkTypesEqual Int endType ("Invalid end value type in for loop in expression: " ++ (printTree endExpr))
+                                          doAndDropState (checkStmt stmt)
   SExp expr -> do checkExprType expr
                   return ()
 
 -- -- -- Checking expressions -- -- --
 
 checkUnaryExprType :: Type -> Type -> Expr -> String -> Check Type
-checkUnaryExprType tIn1 tOut e errMsg =
+checkUnaryExprType expectedType exprType e errMsg =
   do tenv <- get
      eType <- checkExprType e
-     if eType == tIn1
-     then return tOut
+     if eType == expectedType
+     then return exprType
      else throwError (errMsg ++ (printTree e))
 
 checkBinaryExprType :: Type -> Type -> Type -> Expr -> Expr -> String -> Check Type
-checkBinaryExprType tIn1 tIn2 tOut e1 e2 errMsg =
+checkBinaryExprType expectedType1 expectedType2 exprType e1 e2 errMsg =
   do tenv <- get
      e1Type <- checkExprType e1
      e2Type <- checkExprType e2
-     if (e1Type, e2Type) == (tIn1, tIn2)
-     then return tOut
+     if (e1Type, e2Type) == (expectedType1, expectedType2)
+     then return exprType
      else throwError (errMsg ++ (printTree e1) ++ " and " ++ (printTree e2))
 
 checkExprType :: Expr -> Check Type
@@ -184,7 +192,9 @@ checkExprType expr =
     (Neg e) -> checkUnaryExprType Int Int e "Cannot negate (int) expression: "
     (Not e) -> checkUnaryExprType Bool Bool e "Cannot negate (bool) expression: "
     (EMul e1 op e2) -> checkBinaryExprType Int Int Int e1 e2 "Cannot multiply expressions: "
+    (EAdd e1 Concat e2) -> checkBinaryExprType Str Str Str e1 e2 "Cannot concatenate expressions: "
     (EAdd e1 op e2) -> checkBinaryExprType Int Int Int e1 e2 "Cannot add expressions: "
+    (ERel e1 STREQU e2) -> checkBinaryExprType Str Str Bool e1 e2 "Cannot compare strings: "
     (ERel e1 op e2) -> checkBinaryExprType Int Int Bool e1 e2 "Cannot compare expressions: "
     (EAnd e1 e2) -> checkBinaryExprType Bool Bool Bool e1 e2 "Cannot and expressions: "
     (EOr e1 e2) -> checkBinaryExprType Bool Bool Bool e1 e2 "Cannot or expressions: "

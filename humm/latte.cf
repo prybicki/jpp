@@ -110,6 +110,8 @@ Plus.      AddOp ::= "+" ;
 
 Minus.     AddOp ::= "-" ;
 
+Concat.    AddOp ::= "++" ;
+
 Times.     MulOp ::= "*" ;
 
 Div.       MulOp ::= "/" ;
@@ -127,6 +129,8 @@ GE.        RelOp ::= ">=" ;
 EQU.       RelOp ::= "==" ;
 
 NE.        RelOp ::= "!=" ;
+
+STREQU.    RelOp ::= "~~" ;
 
 -- comments ------------------------------------------------
 

@@ -1,0 +1,14 @@
+# 10 points:
+# Functions with arguments passed by value
+# Recursive functions
+
+int fact(int n)
+{
+  if(n <= 1) return 1;
+  else return n * fact(n-1);
+}
+
+int main()
+{
+  return fact(10); // 3628800
+}

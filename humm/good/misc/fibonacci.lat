@@ -5,13 +5,12 @@ int main () {
   lo = 1 ;
   hi = lo ;
   mx = 5000000 ;
-  printInt(lo) ;
+  print(intToStr(lo)) ;
   while (hi < mx) {
-    printInt(hi) ;
+    print(intToStr(hi)) ;
     hi = lo + hi ;
     lo = hi - lo ;
   }
   return 0 ;
 
 }
-

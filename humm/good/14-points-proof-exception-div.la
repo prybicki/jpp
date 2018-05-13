@@ -1,0 +1,6 @@
+int main()
+{
+  print("Prints are preserved even when exception occurs");
+  print(intToStr(5/0));
+  return 42;
+}
