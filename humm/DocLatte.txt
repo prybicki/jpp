@@ -43,7 +43,7 @@ The symbols used in latte are the following:
   | -- | - | ! | &&
   | || | + | * | /
   | % | < | <= | >
-  | >= | == | != | 
+  | >= | == | != | ~~
 
 ===Comments===
 Single-line comments begin with #, //.Multiple-line comments are  enclosed with /* and */.
@@ -116,6 +116,7 @@ All other symbols are terminals.
   |  |  **|**  | //Expr// ``,`` //[Expr]// 
   | //AddOp// | -> | ``+`` 
   |  |  **|**  | ``-`` 
+  |  |  **|**  | ``++`` 
   | //MulOp// | -> | ``*`` 
   |  |  **|**  | ``/`` 
   |  |  **|**  | ``%`` 
@@ -125,5 +126,6 @@ All other symbols are terminals.
   |  |  **|**  | ``>=`` 
   |  |  **|**  | ``==`` 
   |  |  **|**  | ``!=`` 
+  |  |  **|**  | ``~~`` 
 
 

@@ -163,6 +163,7 @@ instance Print AddOp where
   prt i e = case e of
     Plus -> prPrec i 0 (concatD [doc (showString "+")])
     Minus -> prPrec i 0 (concatD [doc (showString "-")])
+    Concat -> prPrec i 0 (concatD [doc (showString "++")])
 
 instance Print MulOp where
   prt i e = case e of
@@ -178,5 +179,6 @@ instance Print RelOp where
     GE -> prPrec i 0 (concatD [doc (showString ">=")])
     EQU -> prPrec i 0 (concatD [doc (showString "==")])
     NE -> prPrec i 0 (concatD [doc (showString "!=")])
+    STREQU -> prPrec i 0 (concatD [doc (showString "~~")])
 
 

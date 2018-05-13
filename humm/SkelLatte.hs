@@ -74,6 +74,7 @@ transAddOp :: AddOp -> Result
 transAddOp x = case x of
   Plus -> failure x
   Minus -> failure x
+  Concat -> failure x
 transMulOp :: MulOp -> Result
 transMulOp x = case x of
   Times -> failure x
@@ -87,4 +88,5 @@ transRelOp x = case x of
   GE -> failure x
   EQU -> failure x
   NE -> failure x
+  STREQU -> failure x
 

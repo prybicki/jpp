@@ -49,6 +49,7 @@ import ErrM
   '{' { PT _ (TS _ 34) }
   '||' { PT _ (TS _ 35) }
   '}' { PT _ (TS _ 36) }
+  '~~' { PT _ (TS _ 37) }
 
 L_ident  { PT _ (TV $$) }
 L_integ  { PT _ (TI $$) }
@@ -134,7 +135,9 @@ ListExpr : {- empty -} { [] }
          | Expr { (:[]) $1 }
          | Expr ',' ListExpr { (:) $1 $3 }
 AddOp :: { AddOp }
-AddOp : '+' { AbsLatte.Plus } | '-' { AbsLatte.Minus }
+AddOp : '+' { AbsLatte.Plus }
+      | '-' { AbsLatte.Minus }
+      | '++' { AbsLatte.Concat }
 MulOp :: { MulOp }
 MulOp : '*' { AbsLatte.Times }
       | '/' { AbsLatte.Div }
@@ -146,6 +149,7 @@ RelOp : '<' { AbsLatte.LTH }
       | '>=' { AbsLatte.GE }
       | '==' { AbsLatte.EQU }
       | '!=' { AbsLatte.NE }
+      | '~~' { AbsLatte.STREQU }
 {
 
 returnM :: a -> Err a
