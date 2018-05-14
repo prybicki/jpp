@@ -1,5 +1,5 @@
 all:
-	bnfc -haskell latte.cf
+	bnfc -haskell Latte.cf
 	happy -gca ParLatte.y
 	alex -g LexLatte.x
 	ghc Interpreter.hs -o interpreter
