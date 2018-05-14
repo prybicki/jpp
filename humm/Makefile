@@ -1,7 +1,5 @@
 all:
-	happy -gca ParLatte.y
-	alex -g LexLatte.x
-	ghc --make TestLatte.hs -o TestLatte
+	bnfc -haskell latte.cf
 	ghc Interpreter.hs -o interpreter
 
 clean:
