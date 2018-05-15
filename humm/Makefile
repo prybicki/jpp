@@ -1,11 +1,17 @@
-all:
-	bnfc -haskell Latte.cf
-	happy -gca ParLatte.y
-	alex -g LexLatte.x
-	ghc Interpreter.hs -o interpreter
+export PATH := /home/students/inf/PUBLIC/MRJP/ghc-8.2.2/bin:$(PATH)
+DEPS = Main.hs StaticCheck.hs Common.hs
 
+all: sandbox interpreter
+
+sandbox:
+		cabal sandbox init
+		cabal install --only-dependencies
+
+interpreter: $(DEPS)
+		cabal build
+		cp ./dist/build/interpreter/interpreter ./interpreter
 
 clean:
-	-rm -f *.log *.aux *.hi *.o *.dvi
-	-rm -f AbsLatte.hs DocLatte.txt ErrM.hs LexLatte.hs LexLatte.x ParLatte.hs ParLatte.y PrintLatte.hs SkelLatte.hs TestLatte.hs interpreter
-
+		cabal clean
+		cabal sandbox delete
+		rm ./interpreter
