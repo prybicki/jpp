@@ -41,7 +41,7 @@ Implementation details:
 
 Common.hs -> shared functions
 StaticCheck.hs -> static analyser
-Interpreter.hs -> main and runtime
+Main.hs -> main and runtime
 
 Both static analyser and runtime are implemented in monadic-style.
 
@@ -57,3 +57,5 @@ In runtime I use the same combination of monads + IO, but with different meaning
 
 Usage: ./interpreter <path-to-program>
 There are some diagnostics messages that indicate occurence of runtime or static checker faults.
+
+*** Please tell me as feedback what is minimal set of additional features that are axpected for 24 points in my case.
