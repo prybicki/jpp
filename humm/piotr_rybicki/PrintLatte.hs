@@ -117,6 +117,8 @@ instance Print Stmt where
     CondElse expr stmt1 stmt2 -> prPrec i 0 (concatD [doc (showString "if"), doc (showString "("), prt 0 expr, doc (showString ")"), prt 0 stmt1, doc (showString "else"), prt 0 stmt2])
     While expr stmt -> prPrec i 0 (concatD [doc (showString "while"), doc (showString "("), prt 0 expr, doc (showString ")"), prt 0 stmt])
     For id expr1 fort expr2 stmt -> prPrec i 0 (concatD [doc (showString "for"), doc (showString "("), doc (showString "int"), prt 0 id, doc (showString "="), prt 0 expr1, prt 0 fort, prt 0 expr2, doc (showString ")"), prt 0 stmt])
+    Break -> prPrec i 0 (concatD [doc (showString "break")])
+    Continue -> prPrec i 0 (concatD [doc (showString "continue")])
     SExp expr -> prPrec i 0 (concatD [prt 0 expr, doc (showString ";")])
   prtList _ [] = (concatD [])
   prtList _ (x:xs) = (concatD [prt 0 x, prt 0 xs])

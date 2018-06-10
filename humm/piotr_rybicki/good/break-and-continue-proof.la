@@ -1,0 +1,82 @@
+void test_break()
+{
+  while(true)
+  {
+    print("Entered infinite loop..");
+    if(true)
+    {
+      print("Breaking!");
+      break;
+    }
+    print("This does not work! :O"); // not displayed
+  }
+  print("Breaked out of infinite while loop.");
+
+  for(int i=40 to 8123123)
+  {
+    print("Inside of for loop, i == " ++ intToStr(i));
+    if(i == 42)
+    {
+      print("Counter reached magic value, breaking");
+      break;
+    }
+  }
+}
+
+void test_continue()
+{
+  int i = 0;
+  while(i < 10)
+  {
+    i++;
+    if(i % 2 == 0)
+    {
+      print(intToStr(i) ++ " is even");
+      continue;
+    }
+    print(intToStr(i) ++ " is odd");
+  }
+
+  for(int j=10 downto 0)
+  {
+    if(j % 2 == 0)
+    {
+      print(intToStr(j) ++ " is even");
+      continue;
+    }
+    print(intToStr(j) ++ " is odd");
+  }
+}
+
+void test_nested()
+{
+  for(int i = 0 to 3)
+  {
+    boolean continued = false;
+    while(true)
+    {
+      if(!continued)
+      {
+        continued = true;
+        continue;
+      }
+      break;
+    }
+    print("Breaked from inner loop");
+    if(i == 1)
+    {
+      print("Breaking from outer loop");
+      break;
+    }
+    continue;
+  }
+  print("All good ;)");
+}
+
+
+int main()
+{
+  test_break();
+  test_continue();
+  test_nested();
+}

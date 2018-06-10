@@ -58,6 +58,11 @@ tryAddToTEnv ident declType errMsg =
      then throwError errMsg
      else modify (Map.insert ident declType)
 
+forceAddToTEnv :: Ident -> Type -> Check ()
+forceAddToTEnv ident declType =
+   do tenv <- get
+      modify (Map.insert ident declType)
+
 -- -- -- Checking global definitions -- -- --
 
 -- Declared function names and builtin names are unique.
@@ -160,6 +165,8 @@ checkStmt stmt = case stmt of
                                           doAndDropState (checkStmt stmt)
   SExp expr -> do checkExprType expr
                   return ()
+  Break -> return ()
+  Continue -> return ()
 
 -- -- -- Checking expressions -- -- --
 

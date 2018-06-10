@@ -34,22 +34,24 @@ import ErrM
   '>' { PT _ (TS _ 19) }
   '>=' { PT _ (TS _ 20) }
   'boolean' { PT _ (TS _ 21) }
-  'downto' { PT _ (TS _ 22) }
-  'else' { PT _ (TS _ 23) }
-  'false' { PT _ (TS _ 24) }
-  'for' { PT _ (TS _ 25) }
-  'if' { PT _ (TS _ 26) }
-  'int' { PT _ (TS _ 27) }
-  'return' { PT _ (TS _ 28) }
-  'string' { PT _ (TS _ 29) }
-  'to' { PT _ (TS _ 30) }
-  'true' { PT _ (TS _ 31) }
-  'void' { PT _ (TS _ 32) }
-  'while' { PT _ (TS _ 33) }
-  '{' { PT _ (TS _ 34) }
-  '||' { PT _ (TS _ 35) }
-  '}' { PT _ (TS _ 36) }
-  '~~' { PT _ (TS _ 37) }
+  'break' { PT _ (TS _ 22) }
+  'continue' { PT _ (TS _ 23) }
+  'downto' { PT _ (TS _ 24) }
+  'else' { PT _ (TS _ 25) }
+  'false' { PT _ (TS _ 26) }
+  'for' { PT _ (TS _ 27) }
+  'if' { PT _ (TS _ 28) }
+  'int' { PT _ (TS _ 29) }
+  'return' { PT _ (TS _ 30) }
+  'string' { PT _ (TS _ 31) }
+  'to' { PT _ (TS _ 32) }
+  'true' { PT _ (TS _ 33) }
+  'void' { PT _ (TS _ 34) }
+  'while' { PT _ (TS _ 35) }
+  '{' { PT _ (TS _ 36) }
+  '||' { PT _ (TS _ 37) }
+  '}' { PT _ (TS _ 38) }
+  '~~' { PT _ (TS _ 39) }
 
 L_ident  { PT _ (TV $$) }
 L_integ  { PT _ (TI $$) }
@@ -91,6 +93,8 @@ Stmt : ';' { AbsLatte.Empty }
      | 'if' '(' Expr ')' Stmt 'else' Stmt { AbsLatte.CondElse $3 $5 $7 }
      | 'while' '(' Expr ')' Stmt { AbsLatte.While $3 $5 }
      | 'for' '(' 'int' Ident '=' Expr ForT Expr ')' Stmt { AbsLatte.For $4 $6 $7 $8 $10 }
+     | 'break' { AbsLatte.Break }
+     | 'continue' { AbsLatte.Continue }
      | Expr ';' { AbsLatte.SExp $1 }
 Item :: { Item }
 Item : Ident { AbsLatte.NoInit $1 }

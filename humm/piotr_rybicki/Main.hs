@@ -40,7 +40,12 @@ type MemState = Map Ident (IORef VarValue)
 
 -- Exceptions to break normal flow of the program.
 -- In future break and continue will be implemented using this mechanism.
-data ExceptionType = ReturnException VarValue | ErrorException ErrorMsg
+data ExceptionType
+  = ErrorException ErrorMsg
+  | ReturnException VarValue
+  | BreakException
+  | ContinueException
+
 
 -- Monadic type to represent execution computations.
 type Execution a = ReaderT FEnv (StateT MemState (ExceptT ExceptionType IO)) a
@@ -77,6 +82,8 @@ execProgram (Program topdefs) = do
   runResult <- runExceptT (runStateT (runReaderT (evalExpr startExpr) startingEnv) startingMemState)
   case runResult of
     Left (ErrorException errMsg) -> putStrLn ("Runtime error: " ++ errMsg)
+    Left (BreakException) -> putStrLn ("Runtime error: break out of loop")
+    Left (ContinueException) -> putStrLn ("Runtime error: continue out of loop")
     Left (ReturnException _) -> error("Return exception is not handled in evalExpr!")
     Right ((VInt value), memstate) -> putStrLn ("Return value: " ++ (show value))
     _ -> error("Main did not return int, most likely static analyzer fault ;(")
@@ -239,33 +246,48 @@ execStmt stmt = case stmt of
        if condition
        then do doAndDropState (execStmt ifstmt)
        else do doAndDropState (execStmt elsestmt)
+  Break -> throwError BreakException
+  Continue -> throwError ContinueException
   While expr stmt ->
     do (VBoolean condition) <- evalExpr expr
        if condition
-       then do doAndDropState (execStmt stmt)
-               execStmt (While expr stmt)
+       then do {
+               doAndDropState (execStmt stmt);
+               execStmt (While expr stmt);
+            }
+            `catchError` (\case
+               BreakException -> return ()
+               ContinueException -> execStmt (While expr stmt)
+               err -> throwError err)
        else return ()
   For counterIdent startExpr forType stopExpr stmt ->
-    do memstate <- get
-       firstValue <- evalExpr startExpr
+    do firstValue <- evalExpr startExpr
        lastValue <- evalExpr stopExpr
        ioValue <- liftIO $ newIORef firstValue
        modify (Map.insert counterIdent ioValue)
-       doFor counterIdent forType lastValue stmt
-       put memstate
+       let modifierFun = case forType of
+                           ForUp -> (\(VInt x) -> (VInt (x+1)))
+                           ForDown -> (\(VInt x) -> (VInt (x-1)))
+       doFor counterIdent forType lastValue stmt modifierFun
   SExp expr -> do { (evalExpr expr); return () }
   where
-   doFor :: Ident -> ForT -> VarValue -> Stmt -> Execution ()
-   doFor counterIdent forType (VInt lastValue) stmt =
-    do (VInt counterValue) <- readVariable counterIdent
-       let (condition, modifierFun) = case forType of
-                                        ForUp -> ((counterValue <= lastValue), (\(VInt x) -> (VInt (x+1))))
-                                        ForDown -> ((counterValue >= lastValue), (\(VInt x) -> (VInt (x-1))))
-       if condition
-       then do doAndDropState (execStmt stmt)
-               modifyVariable counterIdent modifierFun
-               doFor counterIdent forType (VInt lastValue) stmt
-       else return ()
+   -- doFor :: Ident -> ForT -> VarValue -> Stmt -> Execution ()
+   doFor counterIdent forType (VInt lastValue) stmt modifierFun =
+    catchError
+    (do (VInt counterValue) <- readVariable counterIdent
+        let condition = case forType of
+                          ForUp -> (counterValue <= lastValue)
+                          ForDown -> (counterValue >= lastValue)
+        if condition
+        then do doAndDropState (execStmt stmt)
+                modifyVariable counterIdent modifierFun
+                doFor counterIdent forType (VInt lastValue) stmt modifierFun
+        else return ())
+    (\case
+      BreakException -> return ()
+      ContinueException -> do modifyVariable counterIdent modifierFun
+                              doFor counterIdent forType (VInt lastValue) stmt modifierFun
+      err -> do throwError err)
 readVariable :: Ident -> Execution VarValue
 readVariable ident =
  do memstate <- get

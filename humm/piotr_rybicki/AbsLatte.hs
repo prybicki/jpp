@@ -34,6 +34,8 @@ data Stmt
     | CondElse Expr Stmt Stmt
     | While Expr Stmt
     | For Ident Expr ForT Expr Stmt
+    | Break
+    | Continue
     | SExp Expr
   deriving (Eq, Ord, Show, Read)
 
