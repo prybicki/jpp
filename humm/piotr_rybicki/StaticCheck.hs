@@ -141,6 +141,10 @@ checkStmt stmt = case stmt of
   Ass ident expr -> do tenv <- get
                        exprType <- checkExprType expr
                        checkIdentHasType ident exprType ("Invalid expression type in assignment of local variable " ++ (printTree ident) ++ ": " ++ (printTree expr))
+  AssElem ident indexExpr expr -> do checkUnaryExprType Int Int indexExpr ("Array index is not an integer in expression: " ++ (printTree ( AssElem ident indexExpr expr)))
+                                     tenv <- get
+                                     exprType <- checkExprType expr
+                                     checkIdentHasType ident (Array exprType) ("Invalid expression type in assignment to array element: " ++ (printTree (AssElem ident indexExpr expr)))
   Incr ident -> checkIdentHasType ident Int ("Expected integer variable in incrementation statement: " ++ (printTree (Incr ident)))
   Decr ident -> checkIdentHasType ident Int ("Expected integer variable in decrementation statement: " ++ (printTree (Incr ident)))
   Ret expr -> do expectedRetType <- ask
@@ -192,10 +196,20 @@ checkExprType expr =
   case expr of
     (EVar ident) -> do tenv <- get
                        tryFromJust (Map.lookup ident tenv) ("Local variable " ++ printTree ident ++ " is undeclared")
+    (EArrElem ident expr) -> do checkUnaryExprType Int Int expr ("Array index is not an integer in expression: " ++ (printTree (EArrElem ident expr)))
+                                tenv <- get
+                                arrayType <- tryFromJust (Map.lookup ident tenv) ("Local array " ++ printTree ident ++ " is undeclared")
+                                case arrayType of
+                                  Array elemType -> return elemType
+                                  _ -> throwError ("Cannot get element of array as following ident is not an array: " ++ printTree ident)
     (ELitInt _) -> return Int
     (ELitTrue) -> return Bool
     (ELitFalse) -> return Bool
     (EString _) -> return Str
+    (ELitArray exprs declType) -> do types <- mapM checkExprType exprs
+                                     if all (== declType) types
+                                     then return $ Array declType
+                                     else throwError ("Invalid types in array expression: " ++ (printTree (ELitArray exprs declType)))
     (Neg e) -> checkUnaryExprType Int Int e "Cannot negate (int) expression: "
     (Not e) -> checkUnaryExprType Bool Bool e "Cannot negate (bool) expression: "
     (EMul e1 op e2) -> checkBinaryExprType Int Int Int e1 e2 "Cannot multiply expressions: "

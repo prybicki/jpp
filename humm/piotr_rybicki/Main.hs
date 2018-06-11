@@ -30,6 +30,7 @@ data VarValue
   | VInt Integer
   | VBoolean Bool
   | VString String
+  | VArray Type (Map Integer VarValue)
   deriving (Show, Eq, Ord)
 
 -- Function environment
@@ -39,7 +40,6 @@ type FEnv = Map Ident TopDef
 type MemState = Map Ident (IORef VarValue)
 
 -- Exceptions to break normal flow of the program.
--- In future break and continue will be implemented using this mechanism.
 data ExceptionType
   = ErrorException ErrorMsg
   | ReturnException VarValue
@@ -99,6 +99,7 @@ typeDefaultValue declType = case declType of
   Int -> VInt 0
   Str -> VString ""
   Bool -> VBoolean False
+  Array elemType -> VArray elemType Map.empty
 
 doAndDropStateWithState :: MonadState s m => s -> m a -> m ()
 doAndDropStateWithState state action =
@@ -112,9 +113,23 @@ evalExpr expr = case expr of
   EVar ident ->
     do state <- get
        liftIO $ readIORef $ forceFromJust (Map.lookup ident state) ("variable not found: " ++ (printTree ident))
+  EArrElem ident indexExpr ->
+    do state <- get
+       (VInt index) <- evalExpr indexExpr
+       (VArray arrayType (arrayData)) <- liftIO $ readIORef $ forceFromJust (Map.lookup ident state) ("variable not found: " ++ (printTree ident))
+       let maybeValue = Map.lookup index arrayData
+       case maybeValue of
+         Nothing -> do let defaultValue = typeDefaultValue arrayType
+                       modifyVariable ident (\(VArray arrayType arrayMap) -> (VArray arrayType (Map.insert index defaultValue arrayMap)))
+                       return defaultValue
+         Just value -> return value
   ELitInt n -> return (VInt n)
   ELitTrue -> return (VBoolean True)
   ELitFalse -> return (VBoolean False)
+  ELitArray exprs declType ->
+    do values <- mapM evalExpr exprs
+       let indices = [0..toInteger (length values)]
+       return (VArray declType (Map.fromList $ zip indices values))
   EApp ident exprs ->
     do memstate <- get
        fenv <- ask
@@ -231,6 +246,9 @@ execStmt stmt = case stmt of
                               modify (Map.insert ident ioValue)
   Ass ident expr -> do value <- evalExpr expr
                        modifyVariable ident (const value)
+  AssElem ident indexExpr expr -> do (VInt index) <- evalExpr indexExpr
+                                     value <- evalExpr expr
+                                     modifyVariable ident (\(VArray arrayType arrayMap) -> (VArray arrayType (Map.insert index value arrayMap)))
   Incr ident -> modifyVariable ident (\(VInt n) -> (VInt (n+1)))
   Decr ident -> modifyVariable ident (\(VInt n) -> (VInt (n-1)))
   Ret expr -> do value <- evalExpr expr

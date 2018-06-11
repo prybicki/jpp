@@ -26,7 +26,7 @@ data Stmt
     | BStmt Block
     | Decl Type [Item]
     | Ass Ident Expr
-    | AssElem Ident Expr Expr
+    | AssElem Ident Integer Expr
     | Incr Ident
     | Decr Ident
     | Ret Expr
@@ -51,7 +51,7 @@ data Type = Int | Str | Bool | Void | Array Type | Fun Type [Type]
 
 data Expr
     = EVar Ident
-    | EArrElem Ident Expr
+    | EArrElem Ident Integer
     | ELitInt Integer
     | ELitTrue
     | ELitFalse

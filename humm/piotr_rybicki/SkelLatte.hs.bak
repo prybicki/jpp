@@ -31,7 +31,7 @@ transStmt x = case x of
   BStmt block -> failure x
   Decl type_ items -> failure x
   Ass ident expr -> failure x
-  AssElem ident expr1 expr2 -> failure x
+  AssElem ident integer expr -> failure x
   Incr ident -> failure x
   Decr ident -> failure x
   Ret expr -> failure x
@@ -62,7 +62,7 @@ transType x = case x of
 transExpr :: Expr -> Result
 transExpr x = case x of
   EVar ident -> failure x
-  EArrElem ident expr -> failure x
+  EArrElem ident integer -> failure x
   ELitInt integer -> failure x
   ELitTrue -> failure x
   ELitFalse -> failure x

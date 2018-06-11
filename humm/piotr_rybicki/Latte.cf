@@ -34,6 +34,8 @@ separator nonempty Item "," ;
 
 Ass.       Stmt ::= Ident "=" Expr  ";" ;
 
+AssElem.   Stmt ::= Ident "[" Expr "]" "=" Expr ";" ;
+
 Incr.      Stmt ::= Ident "++"  ";" ;
 
 Decr.      Stmt ::= Ident "--"  ";" ;
@@ -72,6 +74,8 @@ Bool.      Type ::= "boolean" ;
 
 Void.      Type ::= "void" ;
 
+Array.     Type ::= Type "[]" ;
+
 internal   Fun. Type ::= Type "(" [Type] ")" ;
 
 separator  Type "," ;
@@ -80,11 +84,15 @@ separator  Type "," ;
 
 EVar.      Expr6 ::= Ident ;
 
+EArrElem.  Expr6 ::= Ident "[" Expr "]" ;
+
 ELitInt.   Expr6 ::= Integer ;
 
 ELitTrue.  Expr6 ::= "true" ;
 
 ELitFalse. Expr6 ::= "false" ;
+
+ELitArray. Expr6 ::= "[" [Expr] "] of " Type ;
 
 EApp.      Expr6 ::= Ident "(" [Expr] ")" ;
 

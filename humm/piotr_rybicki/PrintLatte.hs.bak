@@ -109,7 +109,7 @@ instance Print Stmt where
     BStmt block -> prPrec i 0 (concatD [prt 0 block])
     Decl type_ items -> prPrec i 0 (concatD [prt 0 type_, prt 0 items, doc (showString ";")])
     Ass id expr -> prPrec i 0 (concatD [prt 0 id, doc (showString "="), prt 0 expr, doc (showString ";")])
-    AssElem id expr1 expr2 -> prPrec i 0 (concatD [prt 0 id, doc (showString "["), prt 0 expr1, doc (showString "]"), doc (showString "="), prt 0 expr2, doc (showString ";")])
+    AssElem id n expr -> prPrec i 0 (concatD [prt 0 id, doc (showString "["), prt 0 n, doc (showString "]"), doc (showString "="), prt 0 expr, doc (showString ";")])
     Incr id -> prPrec i 0 (concatD [prt 0 id, doc (showString "++"), doc (showString ";")])
     Decr id -> prPrec i 0 (concatD [prt 0 id, doc (showString "--"), doc (showString ";")])
     Ret expr -> prPrec i 0 (concatD [doc (showString "return"), prt 0 expr, doc (showString ";")])
@@ -148,7 +148,7 @@ instance Print Type where
 instance Print Expr where
   prt i e = case e of
     EVar id -> prPrec i 6 (concatD [prt 0 id])
-    EArrElem id expr -> prPrec i 6 (concatD [prt 0 id, doc (showString "["), prt 0 expr, doc (showString "]")])
+    EArrElem id n -> prPrec i 6 (concatD [prt 0 id, doc (showString "["), prt 0 n, doc (showString "]")])
     ELitInt n -> prPrec i 6 (concatD [prt 0 n])
     ELitTrue -> prPrec i 6 (concatD [doc (showString "true")])
     ELitFalse -> prPrec i 6 (concatD [doc (showString "false")])

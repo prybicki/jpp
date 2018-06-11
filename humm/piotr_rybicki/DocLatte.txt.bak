@@ -70,7 +70,7 @@ All other symbols are terminals.
   |  |  **|**  | //Block// 
   |  |  **|**  | //Type// //[Item]// ``;`` 
   |  |  **|**  | //Ident// ``=`` //Expr// ``;`` 
-  |  |  **|**  | //Ident// ``[`` //Expr// ``]`` ``=`` //Expr// ``;`` 
+  |  |  **|**  | //Ident// ``[`` //Integer// ``]`` ``=`` //Expr// ``;`` 
   |  |  **|**  | //Ident// ``++`` ``;`` 
   |  |  **|**  | //Ident// ``--`` ``;`` 
   |  |  **|**  | ``return`` //Expr// ``;`` 
@@ -97,7 +97,7 @@ All other symbols are terminals.
   |  |  **|**  | //Type// 
   |  |  **|**  | //Type// ``,`` //[Type]// 
   | //Expr6// | -> | //Ident// 
-  |  |  **|**  | //Ident// ``[`` //Expr// ``]`` 
+  |  |  **|**  | //Ident// ``[`` //Integer// ``]`` 
   |  |  **|**  | //Integer// 
   |  |  **|**  | ``true`` 
   |  |  **|**  | ``false`` 
