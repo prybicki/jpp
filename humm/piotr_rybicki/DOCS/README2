@@ -1,3 +1,14 @@
 In second iteration I've implemented two more features:
 
-Keywords "break" and "continue", working as in C, see example in file good/break-and-continue-proof.la
+1) Keywords "break" and "continue", working as in C, see example in file good/break-and-continue-proof.la
+
+2) Arrays. Arrays can be any of primitive type: int, boolean, string.
+
+Example: int[] intArray = [42, 1337] of int;
+Out of bounds behaviour: will create such index with default value (behaves like a map of type int -> arrayType)
+Negative indices are allowed.
+Nested arrays are not allowed.
+(Nested arrays were planned, but last-minute I realized the grammar is a bit wrong and
+I'm not a fan of risky changes and hope non-nested are enough for arrays to be considered as implemented)
+
+See example in file good/arrays-proof.la
