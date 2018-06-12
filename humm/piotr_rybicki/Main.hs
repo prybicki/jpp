@@ -139,22 +139,30 @@ evalExpr expr = case expr of
            do values <- mapM evalExpr exprs
               ioValues <- mapM (liftIO . newIORef) values
               do {
-                 doAndDropStateWithState (Map.fromList (zip (map argIdent args) ioValues)) (execBuiltin ident);
-                 error ("Builtin did not returned any value ;(")
+                 put (Map.fromList (zip (map argIdent args) ioValues));
+                 execBuiltin ident;
+                 put memstate;
+                 error("Builtin did not return");
               }
               `catchError` (\case
-                ReturnException varValue -> return varValue
-                err -> throwError err)
+                ReturnException varValue -> do put memstate
+                                               return varValue
+                err -> do put memstate
+                          throwError err)
          (FnDef declType _ args block) ->
            do values <- mapM evalExpr exprs
               ioValues <- mapM (liftIO . newIORef) values
               do {
-                 doAndDropStateWithState (Map.fromList (zip (map argIdent args) ioValues)) (execStmt (BStmt block));
+                 put (Map.fromList (zip (map argIdent args) ioValues));
+                 execStmt (BStmt block);
+                 put memstate;
                  return (typeDefaultValue declType)
               }
               `catchError` (\case
-                ReturnException varValue -> return varValue
-                err -> throwError err)
+                ReturnException varValue -> do put memstate
+                                               return varValue
+                err -> do put memstate
+                          throwError err)
   EString str -> return (VString str)
   Neg expr ->
     do (VInt value) <- evalExpr expr
