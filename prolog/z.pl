@@ -1,40 +1,5 @@
 :- use_module(library(lists)).
 
-g0g([ [v0, e, v1, v2, v3] ]).
-g0w([ [v0, e, v1] ]).
-
-g1g([   [v0, a, v1, v3],
-        [v1, e, v2, v3],
-        [v2, a],
-        [v3, a]         ]).
-
-g1w([   [v0, a, v1, v3],
-        [v1, e, v3],
-        [v2, a],
-        [v3, a]         ]).
-
-g2g([   [v0, a, v1],
-        [v1, a, v2],
-        [v2, a]     ]).
-
-g3g([   [v0, a]         ]).
-
-g4g([   [v0, a, v1],
-        [v1, a]         ]).
-
-g5g([   [v0, a, v1, v2],
-        [v1, a],
-        [v2, a]        ]).
-
-g6g([ [v1, a, v5, v6, v1],
-        [v2, a, v1],
-        [v3, a],
-        [v4, a, v2, v4],
-        [v5, a, v1, v2, v3, v4],
-        [v6, a, v5]     ]).
-
-g7g([ [v0, a, v0] ]).
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 jestWyborem([], []).
@@ -81,3 +46,69 @@ jestDFSDzieci([Vd|ResztaDzieci], OdwiedzeniPozniej, OdwiedzeniWczesniej, Graf) :
         jestDFSDzieci(ResztaDzieci, OdwiedzeniPozniej, OdwiedzeniWczesniej, Graf).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+jestADFS(+AEGraf, -Lista) :-
+        jestWyborem(AEGraf, Wybor),
+        jestDFS(Wybor, Lista).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+jestADFS1(+AEGraf, -Lista) :- 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dane test&debug:
+
+g0g([ [v0, e, v1, v2, v3] ]).
+g0w([ [v0, e, v1] ]).
+
+g1g([   [v0, a, v1, v3],
+        [v1, e, v2, v3],
+        [v2, a],
+        [v3, a]         ]).
+
+g1w([   [v0, a, v1, v3],
+        [v1, e, v3],
+        [v2, a],
+        [v3, a]         ]).
+
+g2g([   [v0, a, v1],
+        [v1, a, v2],
+        [v2, a]     ]).
+
+g3g([   [v0, a]         ]).
+
+g4g([   [v0, a, v1],
+        [v1, a]         ]).
+
+g5g([   [v0, a, v1, v2],
+        [v1, a],
+        [v2, a]        ]).
+
+g6g([ [v1, a, v5, v6, v1],
+        [v2, a, v1],
+        [v3, a],
+        [v4, a, v2, v4],
+        [v5, a, v1, v2, v3, v4],
+        [v6, a, v5]     ]).
+
+g7g([ [v0, a, v0] ]).
+
+g8g([   [v1, a, v7, v14, v15, v18],
+        [v2, a, v10],
+        [v3, a, v13],
+        [v4, a, v2, v14],
+        [v5, a, v10, v16],
+        [v6, a], % Wierzcholek izolowany
+        [v7, a, v5, v12],
+        [v8, a, v17],
+        [v9, a, v12],
+        [v10, a],
+        [v11, a, v3],
+        [v12, a],
+        [v13, a, v4],
+        [v14, a],
+        [v15, a, v8],
+        [v16, a, v13],
+        [v17, a, v11, v16],
+        [v18, a, v9]    ]).
