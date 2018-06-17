@@ -1,5 +1,6 @@
 % Autor: Piotr Rybicki
 % Indeks: 360957
+% Implementacja nie generuje grafu z listy DFS.
 
 :- use_module(library(lists)).
 
